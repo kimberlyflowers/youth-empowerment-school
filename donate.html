@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Donate — YES Youth Empowerment School</title>
+<meta name="description" content="Your gift opens a YES classroom seat for a child whose family couldn't afford it otherwise.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-screen-label="Donate">
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="gold">★</span> Faith · Education · Leadership · Impact</span>
+    <span>Now enrolling — <a href="index.html#apply" style="color: var(--yes-gold-bright);">Fall 2026 cohort</a></span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand-lockup" href="index.html">
+      <img src="assets/img/yes-logo.png" alt="YES Youth Empowerment School">
+      <span class="brand-text">
+        <span class="brand-name">YES</span>
+        <span class="brand-tag">Youth Empowerment School</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="donate.html">Donate</a></li>
+    </ul>
+    <a class="nav-cta" href="index.html#apply">Apply Now →</a>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg">Photo · students smiling</div>
+  <div class="container">
+    <div class="crumb"><a href="index.html">Home</a> <span>/</span> <span>Donate</span></div>
+    <h1>Sponsor a seat. <em>Shape a life.</em></h1>
+    <p>Every gift to YES goes directly to our scholarship fund — opening doors for families who believe in our mission but can't carry the full cost on their own.</p>
+  </div>
+</section>
+
+<!-- GIVE -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="prose">
+        <span class="eyebrow">Where your gift goes</span>
+        <h2 class="section-title">100% of donations <span class="accent">fund tuition assistance.</span></h2>
+        <p class="lead">YES is a non-profit ministry. Operating costs are covered by tuition. Donations exist for one purpose: to make sure no family who's called to YES is turned away because of money.</p>
+
+        <div class="impact-mini">
+          <div class="impact-mini-row">
+            <strong>$50</strong>
+            <p>Funds a week of classroom supplies for one student.</p>
+          </div>
+          <div class="impact-mini-row">
+            <strong>$250</strong>
+            <p>Sponsors a service-trip seat for a middle schooler.</p>
+          </div>
+          <div class="impact-mini-row">
+            <strong>$1,000</strong>
+            <p>Covers one quarter of partial scholarship aid.</p>
+          </div>
+          <div class="impact-mini-row">
+            <strong>$5,000</strong>
+            <p>Funds a full-year seat for a student in financial need.</p>
+          </div>
+        </div>
+
+        <div class="divider">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+        </div>
+
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; color: var(--yes-graphite);">
+          YES is a registered 501(c)(3). All donations are tax-deductible. EIN available on request.
+        </p>
+      </div>
+
+      <div class="give-card">
+        <span class="eyebrow">Give now</span>
+        <h2 style="margin-top: 12px;">Make a gift</h2>
+        <p class="sub">Secure, simple, and fully tax-deductible.</p>
+
+        <div class="frequency">
+          <button class="active">One-time</button>
+          <button>Monthly</button>
+          <button>Annually</button>
+        </div>
+
+        <label style="font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; font-weight: 600; color: var(--yes-navy-deep); display: block; margin-bottom: 8px;">Choose an amount</label>
+        <div class="amounts">
+          <div class="amount" data-amount="50"><strong>$50</strong><span>Supplies</span></div>
+          <div class="amount active" data-amount="250"><strong>$250</strong><span>Trip seat</span></div>
+          <div class="amount" data-amount="1000"><strong>$1,000</strong><span>Quarter</span></div>
+          <div class="amount" data-amount="5000"><strong>$5,000</strong><span>Full year</span></div>
+        </div>
+
+        <label style="font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; font-weight: 600; color: var(--yes-navy-deep); display: block; margin-bottom: 8px;">Or enter custom amount</label>
+        <input type="number" id="custom-amount" placeholder="$ Other amount" min="1">
+
+        <label style="font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; font-weight: 600; color: var(--yes-navy-deep); display: block; margin-bottom: 8px; margin-top: 8px;">Your details</label>
+        <input type="text" placeholder="Full name" required>
+        <input type="email" placeholder="Email" required>
+
+        <a href="https://buy.stripe.com/test_yes_donation" id="stripe-checkout" class="submit-btn" style="width: 100%; margin-top: 12px; background: var(--yes-crimson); color: var(--yes-white); border: 0; padding: 18px; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: var(--radius-md); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+          Continue to Stripe checkout →
+        </a>
+
+        <p style="font-size: 0.78rem; color: var(--yes-graphite); text-align: center; margin: 12px 0 0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: -2px; color: var(--yes-sage);"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none"/></svg>
+          Powered by <strong>Stripe</strong> · Tax-deductible · Receipt emailed instantly
+        </p>
+
+        <div style="display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--yes-stone); font-size: 0.7rem; color: var(--yes-graphite); font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.18em;">
+          <span>Accepts</span>
+          <span style="font-family: var(--font-body); font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--yes-navy-deep);">Visa</span>
+          <span style="font-family: var(--font-body); font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--yes-navy-deep);">Mastercard</span>
+          <span style="font-family: var(--font-body); font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--yes-navy-deep);">Amex</span>
+          <span style="font-family: var(--font-body); font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--yes-navy-deep);">Apple&nbsp;Pay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow on-dark">The impact, in plain numbers</span>
+      <h2 class="section-title">What your generosity has <span class="accent">already done.</span></h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-cell"><strong>$1.4M</strong><span>Awarded in scholarships since 2018</span></div>
+      <div class="impact-cell"><strong>187</strong><span>Students enrolled with financial aid</span></div>
+      <div class="impact-cell"><strong>62</strong><span>Families currently supported</span></div>
+      <div class="impact-cell"><strong>0</strong><span>Called students turned away last year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section section-paper">
+  <div class="container pull">
+    <span class="pull-mark">"</span>
+    <blockquote>We thought a school like YES was out of reach. The scholarship didn't just open a door — it changed our daughter's life.</blockquote>
+    <cite>— The Martinez Family · YES parents since 2022</cite>
+  </div>
+</section>
+
+<!-- OTHER WAYS -->
+<section class="section section-ivory">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Other ways to give</span>
+      <h2 class="section-title">Beyond the <span class="accent">one-time gift.</span></h2>
+    </div>
+    <div class="pillars" style="grid-template-columns: repeat(3, 1fr);">
+      <article class="pillar">
+        <span class="num">— Monthly</span>
+        <h3>Become a sustainer.</h3>
+        <p>A recurring gift — even $25/month — lets us plan further ahead and award scholarships earlier in the year.</p>
+      </article>
+      <article class="pillar">
+        <span class="num">— Stock &amp; DAF</span>
+        <h3>Appreciated assets.</h3>
+        <p>Donate stock or recommend a grant from your donor-advised fund. Often the most tax-efficient way to give.</p>
+      </article>
+      <article class="pillar">
+        <span class="num">— Legacy</span>
+        <h3>Plan a legacy gift.</h3>
+        <p>Include YES in your will, trust, or estate plan. Reach out and we'll connect you with our development team.</p>
+      </article>
+    </div>
+    <div style="text-align: center; margin-top: var(--space-7);">
+      <a href="mailto:give@yesacademy.org" class="btn btn-outline">Talk to our development team →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/img/yes-logo.png" alt="YES">
+          <div class="text">Youth Empowerment School<span>Lead · Serve · Impact</span></div>
+        </div>
+        <p class="footer-tag">A faith-rooted K–12 academy raising the next generation of servant-leaders. An initiative of Outpouring Missions International.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="events.html">Events</a></li><li><a href="donate.html">Donate</a></li></ul></div>
+      <div><h4>Admissions</h4><ul><li><a href="index.html#apply">Apply now</a></li><li><a href="about.html">Visit campus</a></li><li><a href="events.html">Open house</a></li><li><a href="donate.html">Tuition assistance</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>(210) 555-0123</li><li>hello@yesacademy.org</li><li>San Antonio, TX</li><li><a href="#">Instagram</a> · <a href="#">Facebook</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Youth Empowerment School. All rights reserved.</span>
+      <div class="footer-omi"><span>An initiative of</span><img src="assets/img/omi-logo-full-white.png" alt="OMI"></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

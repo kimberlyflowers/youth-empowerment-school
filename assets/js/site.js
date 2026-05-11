@@ -1,0 +1,231 @@
+// Shared site behavior + Tweaks panel host integration
+(function() {
+  // Mobile nav toggle
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  }
+
+  // Highlight current page
+  const path = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('href') === path) a.classList.add('active');
+  });
+
+  // Donate amount toggle + Stripe link builder
+  const amounts = document.querySelectorAll('.amount');
+  const stripeBtn = document.getElementById('stripe-checkout');
+  const STRIPE_BASE = 'https://buy.stripe.com/test_yes_donation';
+  function syncStripe() {
+    if (!stripeBtn) return;
+    const active = document.querySelector('.amount.active');
+    const freq = document.querySelector('.frequency button.active');
+    const custom = document.getElementById('custom-amount');
+    const amt = (custom && custom.value) || (active && active.dataset.amount) || '';
+    const f = freq ? freq.textContent.trim().toLowerCase() : 'one-time';
+    const params = new URLSearchParams();
+    if (amt) params.set('amount', amt);
+    params.set('frequency', f);
+    stripeBtn.href = STRIPE_BASE + '?' + params.toString();
+  }
+  amounts.forEach(a => a.addEventListener('click', () => {
+    amounts.forEach(b => b.classList.remove('active'));
+    a.classList.add('active');
+    const custom = document.getElementById('custom-amount');
+    if (custom) custom.value = a.dataset.amount || '';
+    syncStripe();
+  }));
+  const customAmt = document.getElementById('custom-amount');
+  if (customAmt) customAmt.addEventListener('input', syncStripe);
+  syncStripe();
+
+  // Frequency toggle
+  document.querySelectorAll('.frequency button').forEach(b => {
+    b.addEventListener('click', () => {
+      b.parentElement.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      if (typeof syncStripe === 'function') syncStripe();
+    });
+  });
+
+  // Apply form (demo)
+  document.querySelectorAll('form[data-demo]').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type=submit], .submit-btn');
+      if (btn) {
+        const original = btn.innerHTML;
+        btn.innerHTML = '✓ Submitted — we\'ll be in touch';
+        btn.disabled = true;
+        setTimeout(() => { btn.innerHTML = original; btn.disabled = false; form.reset(); }, 2400);
+      }
+    });
+  });
+})();
+
+/* ============ Tweaks panel host integration ============ */
+(function() {
+  const root = document.documentElement;
+  const STORAGE = 'yes-tweaks-v1';
+  const DEFAULTS = {
+    accent: 'crimson',
+    density: 'comfortable',
+    headlineFont: 'playfair'
+  };
+  let state = { ...DEFAULTS, ...readStored() };
+
+  function readStored() {
+    try { return JSON.parse(localStorage.getItem(STORAGE) || '{}'); }
+    catch { return {}; }
+  }
+  function persist() { localStorage.setItem(STORAGE, JSON.stringify(state)); }
+
+  function apply() {
+    // Accent
+    if (state.accent === 'navy') {
+      root.style.setProperty('--color-primary', 'var(--yes-navy)');
+      root.style.setProperty('--color-link', 'var(--yes-navy)');
+    } else if (state.accent === 'gold') {
+      root.style.setProperty('--color-primary', 'var(--yes-gold-deep)');
+      root.style.setProperty('--color-link', 'var(--yes-gold-deep)');
+    } else {
+      root.style.setProperty('--color-primary', 'var(--yes-crimson)');
+      root.style.setProperty('--color-link', 'var(--yes-crimson)');
+    }
+    document.body.dataset.accent = state.accent;
+
+    // Density
+    if (state.density === 'compact') {
+      root.style.setProperty('--space-9', '4rem');
+      root.style.setProperty('--space-8', '2.5rem');
+    } else {
+      root.style.removeProperty('--space-9');
+      root.style.removeProperty('--space-8');
+    }
+
+    // Headline font
+    if (state.headlineFont === 'oswald') {
+      root.style.setProperty('--font-display', '"Oswald", Impact, sans-serif');
+    } else if (state.headlineFont === 'cormorant') {
+      root.style.setProperty('--font-display', '"Cormorant Garamond", Georgia, serif');
+    } else {
+      root.style.removeProperty('--font-display');
+    }
+  }
+
+  // Tweak panel UI
+  function buildPanel() {
+    if (document.getElementById('yes-tweaks-panel')) return;
+    const panel = document.createElement('div');
+    panel.id = 'yes-tweaks-panel';
+    panel.innerHTML = `
+      <style>
+        #yes-tweaks-panel {
+          position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+          width: 280px;
+          background: #fff; border-radius: 14px;
+          box-shadow: 0 30px 70px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.05);
+          font-family: 'Inter', system-ui, sans-serif;
+          color: #152B54;
+          overflow: hidden;
+          transform: translateY(8px); opacity: 0;
+          transition: transform 240ms, opacity 240ms;
+        }
+        #yes-tweaks-panel.shown { transform: translateY(0); opacity: 1; }
+        #yes-tweaks-panel .hd {
+          padding: 14px 16px; background: #0B1C3D; color: #fff;
+          display: flex; justify-content: space-between; align-items: center;
+        }
+        #yes-tweaks-panel .hd b { font-family: 'Oswald', sans-serif; letter-spacing: .22em; font-size: .8rem; text-transform: uppercase; }
+        #yes-tweaks-panel .hd button { background: transparent; border: 0; color: #fff; cursor: pointer; font-size: 1.2rem; line-height: 1; padding: 0 4px; }
+        #yes-tweaks-panel .body { padding: 14px 16px 18px; }
+        #yes-tweaks-panel .row { margin-bottom: 14px; }
+        #yes-tweaks-panel label.lbl {
+          display: block; font-family: 'Oswald', sans-serif;
+          text-transform: uppercase; letter-spacing: .18em;
+          font-size: .68rem; color: #20407A; margin-bottom: 8px; font-weight: 600;
+        }
+        #yes-tweaks-panel .opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        #yes-tweaks-panel .opt {
+          padding: 8px; border-radius: 8px; cursor: pointer; text-align: center;
+          background: #F7F4EC; border: 1.5px solid transparent;
+          font-size: .78rem; font-weight: 600;
+          transition: all 200ms;
+        }
+        #yes-tweaks-panel .opt:hover { background: #F9D8DC; }
+        #yes-tweaks-panel .opt.active { background: #C8202E; color: #fff; border-color: #8A1A24; }
+        #yes-tweaks-panel .swatch {
+          height: 28px; border-radius: 6px; margin-bottom: 4px;
+        }
+      </style>
+      <div class="hd">
+        <b>Tweaks</b>
+        <button data-close aria-label="Close">×</button>
+      </div>
+      <div class="body">
+        <div class="row">
+          <label class="lbl">Accent color</label>
+          <div class="opts" data-key="accent">
+            <div class="opt" data-val="crimson"><div class="swatch" style="background:#C8202E"></div>Crimson</div>
+            <div class="opt" data-val="navy"><div class="swatch" style="background:#0B1C3D"></div>Navy</div>
+            <div class="opt" data-val="gold"><div class="swatch" style="background:#C79226"></div>Gold</div>
+          </div>
+        </div>
+        <div class="row">
+          <label class="lbl">Headline font</label>
+          <div class="opts" data-key="headlineFont">
+            <div class="opt" data-val="playfair">Playfair</div>
+            <div class="opt" data-val="cormorant">Cormorant</div>
+            <div class="opt" data-val="oswald">Oswald</div>
+          </div>
+        </div>
+        <div class="row">
+          <label class="lbl">Density</label>
+          <div class="opts" data-key="density" style="grid-template-columns: 1fr 1fr;">
+            <div class="opt" data-val="comfortable">Comfortable</div>
+            <div class="opt" data-val="compact">Compact</div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelector('[data-close]').addEventListener('click', () => {
+      hidePanel();
+      window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+    });
+
+    panel.querySelectorAll('.opts').forEach(group => {
+      const key = group.dataset.key;
+      group.querySelectorAll('.opt').forEach(opt => {
+        if (opt.dataset.val === state[key]) opt.classList.add('active');
+        opt.addEventListener('click', () => {
+          group.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          state[key] = opt.dataset.val;
+          persist();
+          apply();
+        });
+      });
+    });
+  }
+
+  function showPanel() {
+    buildPanel();
+    requestAnimationFrame(() => document.getElementById('yes-tweaks-panel').classList.add('shown'));
+  }
+  function hidePanel() {
+    const p = document.getElementById('yes-tweaks-panel');
+    if (p) p.classList.remove('shown');
+  }
+
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') showPanel();
+    if (d.type === '__deactivate_edit_mode') hidePanel();
+  });
+
+  apply();
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch {}
+})();

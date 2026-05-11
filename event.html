@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fall Open House &amp; Admissions Tour — YES</title>
+<meta name="description" content="Spend a Saturday morning at YES — campus tour, classroom demos, and one-on-one with admissions.">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+  /* ===== Event detail layout ===== */
+  .event-hero {
+    position: relative;
+    background: var(--yes-navy-deep);
+    color: var(--yes-white);
+    padding: var(--space-8) 0 var(--space-7);
+    overflow: hidden;
+  }
+  .event-hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(70% 50% at 30% 30%, rgba(255,255,255,0.12), transparent 70%),
+      linear-gradient(160deg, #20407A, #0B1C3D);
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.4);
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  .event-hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.45; mix-blend-mode: luminosity; }
+  .event-hero::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(11,28,61,0.3) 0%, rgba(11,28,61,0.5) 50%, rgba(11,28,61,0.92) 100%);
+  }
+  .event-hero .container { position: relative; z-index: 2; max-width: 920px; }
+  .event-back {
+    font-family: var(--font-athletic);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 20px;
+  }
+  .event-back:hover { color: var(--yes-gold-bright); }
+  .event-tag {
+    display: inline-block;
+    background: rgba(199,146,38,0.18);
+    color: var(--yes-gold-bright);
+    border: 1px solid rgba(199,146,38,0.4);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-athletic);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+  .event-hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    color: var(--yes-white);
+    text-wrap: balance;
+  }
+  .event-hero h1 em { color: var(--yes-gold-bright); font-style: italic; }
+  .event-tagline {
+    font-family: var(--font-script);
+    font-style: italic;
+    color: var(--yes-gold-bright);
+    font-size: 1.4rem;
+    margin: 0 0 22px;
+  }
+  .event-meta-row {
+    display: flex; flex-wrap: wrap; gap: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .event-meta-row .item { display: flex; align-items: flex-start; gap: 10px; }
+  .event-meta-row svg { flex: 0 0 18px; margin-top: 2px; color: var(--yes-gold-bright); }
+  .event-meta-row .item strong { display: block; font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--yes-white); }
+  .event-meta-row .item span { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+  .event-body {
+    background: var(--yes-paper);
+    padding: var(--space-7) 0 var(--space-9);
+  }
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  /* Left column */
+  .event-section { margin-bottom: var(--space-7); }
+  .event-section h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--yes-navy-deep);
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .event-section p {
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--yes-graphite);
+    margin: 0 0 14px;
+  }
+
+  .schedule-list {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .schedule-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 18px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--yes-stone);
+    align-items: center;
+  }
+  .schedule-row:last-child { border-bottom: 0; }
+  .schedule-row .when {
+    font-family: var(--font-athletic);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--yes-crimson);
+  }
+  .schedule-row .what {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--yes-navy-deep);
+  }
+
+  .speakers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .speaker {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-radius: var(--radius-md);
+    padding: 14px;
+  }
+  .speaker .ph {
+    aspect-ratio: 1/1;
+    background: var(--yes-navy-deep);
+    border-radius: var(--radius-sm);
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .speaker .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .speaker h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--yes-navy-deep); margin: 0 0 4px; }
+  .speaker .role { font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.7rem; color: var(--yes-graphite); }
+
+  .location-card {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+  }
+  .location-card h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--yes-navy-deep); margin: 0 0 6px; }
+  .location-card .addr { font-family: var(--font-body); color: var(--yes-graphite); margin-bottom: 18px; line-height: 1.5; }
+  .map-frame {
+    aspect-ratio: 16/9;
+    background: var(--yes-navy-deep);
+    border-radius: var(--radius-md);
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    overflow: hidden;
+  }
+  .map-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+  .faq-item {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--yes-navy-deep);
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 1.05rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 1.4rem; color: var(--yes-crimson); font-weight: 400; }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item p { margin: 12px 0 0; font-family: var(--font-serif); color: var(--yes-graphite); line-height: 1.6; }
+
+  /* Right column — sticky checkout card */
+  .checkout-card {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-top: 4px solid var(--yes-gold-deep);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: sticky;
+    top: 100px;
+    box-shadow: var(--shadow-md);
+  }
+  .checkout-meta { padding-bottom: 18px; border-bottom: 1px solid var(--yes-stone); margin-bottom: 18px; }
+  .checkout-meta .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+  .checkout-meta .row:last-child { margin-bottom: 0; }
+  .checkout-meta .row svg { flex: 0 0 18px; margin-top: 3px; color: var(--yes-gold-deep); }
+  .checkout-meta .row strong { display: block; font-weight: 600; color: var(--yes-navy-deep); font-size: 0.97rem; line-height: 1.4; }
+  .checkout-meta .row span { display: block; font-size: 0.85rem; color: var(--yes-graphite); margin-top: 2px; }
+  .ticket-label {
+    font-family: var(--font-athletic);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.7rem;
+    color: var(--yes-gold-deep);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .ticket {
+    border: 1.5px solid var(--yes-stone);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 200ms;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .ticket:hover { border-color: var(--yes-gold-deep); }
+  .ticket.active { border-color: var(--yes-gold-deep); background: rgba(199,146,38,0.06); }
+  .ticket .radio {
+    flex: 0 0 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--yes-stone); margin-top: 2px;
+    display: grid; place-items: center;
+  }
+  .ticket.active .radio { border-color: var(--yes-gold-deep); }
+  .ticket.active .radio::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--yes-gold-deep); }
+  .ticket .body { flex: 1; }
+  .ticket .name { font-weight: 700; color: var(--yes-navy-deep); font-size: 1rem; }
+  .ticket .desc { font-size: 0.84rem; color: var(--yes-graphite); margin-top: 2px; }
+  .ticket .price { font-family: var(--font-display); font-weight: 700; color: var(--yes-navy-deep); font-size: 1.15rem; }
+  .register-btn {
+    width: 100%;
+    margin-top: 14px;
+    background: var(--yes-gold-deep);
+    color: var(--yes-navy-deep);
+    border: 0;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-decoration: none;
+    transition: background 200ms;
+  }
+  .register-btn:hover { background: var(--yes-gold-bright); }
+  .checkout-foot {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--yes-graphite);
+  }
+  .checkout-foot span { display: inline-flex; align-items: center; gap: 6px; }
+
+  @media (max-width: 1024px) {
+    .event-grid { grid-template-columns: 1fr; }
+    .checkout-card { position: static; }
+    .speakers { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .schedule-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
+    .speakers { grid-template-columns: 1fr; }
+    .event-meta-row { gap: 18px; }
+  }
+</style>
+</head>
+<body data-screen-label="Event Detail">
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="gold">★</span> Faith · Education · Leadership · Impact</span>
+    <span>Now enrolling — <a href="index.html#apply" style="color: var(--yes-gold-bright);">Fall 2026 cohort</a></span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand-lockup" href="index.html">
+      <img src="assets/img/yes-logo.png" alt="YES Youth Empowerment School">
+      <span class="brand-text">
+        <span class="brand-name">YES</span>
+        <span class="brand-tag">Youth Empowerment School</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="donate.html">Donate</a></li>
+    </ul>
+    <a class="nav-cta" href="index.html#apply">Apply Now →</a>
+  </div>
+</nav>
+
+<section class="event-hero">
+  <div class="event-hero-bg">Photo · open house gathering</div>
+  <div class="container">
+    <a href="events.html" class="event-back">← Back to all events</a>
+    <span class="event-tag">Admissions · Open House</span>
+    <h1>Fall <em>Open House</em> &amp; Admissions Tour</h1>
+    <p class="event-tagline">Come see what a YES education looks like in person.</p>
+    <div class="event-meta-row">
+      <div class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div><strong>Saturday, October 17, 2026</strong><span>9:00 AM – 12:00 PM CST</span></div>
+      </div>
+      <div class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><strong>YES Main Campus</strong><span>San Antonio, TX</span></div>
+      </div>
+      <div class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div><strong>Open to all families</strong><span>Free · RSVP required</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="event-body">
+  <div class="container">
+    <div class="event-grid">
+      <div>
+
+        <div class="event-section">
+          <h2>About this event</h2>
+          <p>Spend a Saturday morning with us. Tour every grade level, hear from current parents, sit in on student-led demos, and meet our admissions team one-on-one. Coffee &amp; pastries on the house.</p>
+          <p>Designed for families considering YES for fall enrollment — but anyone curious about a faith-rooted, classically-grounded education is welcome. Bring your kids; we'll have student ambassadors leading age-appropriate activities while you tour.</p>
+        </div>
+
+        <div class="event-section">
+          <h2>Schedule</h2>
+          <div class="schedule-list">
+            <div class="schedule-row"><span class="when">9:00 AM</span><span class="what">Check-in &amp; coffee · Main Hall</span></div>
+            <div class="schedule-row"><span class="when">9:30 AM</span><span class="what">Welcome from Pastor James Reyes</span></div>
+            <div class="schedule-row"><span class="when">10:00 AM</span><span class="what">Lower School tour (K–5) &amp; classroom demos</span></div>
+            <div class="schedule-row"><span class="when">10:45 AM</span><span class="what">Middle &amp; Upper School tour (6–12)</span></div>
+            <div class="schedule-row"><span class="when">11:30 AM</span><span class="what">Parent panel &amp; Q&amp;A</span></div>
+            <div class="schedule-row"><span class="when">12:00 PM</span><span class="what">Closing prayer · One-on-one with admissions</span></div>
+          </div>
+        </div>
+
+        <div class="event-section">
+          <h2>You'll meet</h2>
+          <div class="speakers">
+            <div class="speaker">
+              <div class="ph">Headshot · pastor</div>
+              <h4>Pastor James Reyes</h4>
+              <div class="role">Headmaster</div>
+            </div>
+            <div class="speaker">
+              <div class="ph">Headshot · admissions lead</div>
+              <h4>Dr. Maria Castillo</h4>
+              <div class="role">Admissions Director</div>
+            </div>
+            <div class="speaker">
+              <div class="ph">Headshot · academic dean</div>
+              <h4>Dr. Marcus Williams</h4>
+              <div class="role">Academic Dean</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-section">
+          <h2>Where</h2>
+          <div class="location-card">
+            <h4>YES Main Campus</h4>
+            <p class="addr">1234 Mission Trail<br>San Antonio, TX 78210</p>
+            <div class="map-frame">Map · YES Main Campus</div>
+          </div>
+        </div>
+
+        <div class="event-section">
+          <h2>Frequently asked</h2>
+          <details class="faq-item">
+            <summary>Should I bring my children?</summary>
+            <p>Yes — please do! Student ambassadors lead age-appropriate activities throughout the morning so parents can tour and ask questions freely.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long should I plan to stay?</summary>
+            <p>The full program runs 9 AM to noon, with optional one-on-one time with admissions afterward. Most families stay the whole morning.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I apply at the event?</summary>
+            <p>Absolutely. Our admissions team will have laptops and printed applications on hand, and we can walk you through the process right there.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if I can't make this date?</summary>
+            <p>We host monthly tours and are happy to schedule a private one. Email <a href="mailto:admissions@yesacademy.org">admissions@yesacademy.org</a> and we'll find a time that works.</p>
+          </details>
+        </div>
+
+      </div>
+
+      <!-- Sticky checkout card -->
+      <aside class="checkout-card">
+        <div class="checkout-meta">
+          <div class="row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <div><strong>Saturday, October 17, 2026</strong><span>9:00 AM – 12:00 PM CST</span></div>
+          </div>
+          <div class="row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><strong>YES Main Campus</strong><span>San Antonio, TX</span></div>
+          </div>
+        </div>
+
+        <div class="ticket-label">Tickets</div>
+        <div class="ticket active">
+          <div class="radio"></div>
+          <div class="body">
+            <div class="name">Family RSVP <span style="float: right;" class="price">Free</span></div>
+            <div class="desc">Up to 4 guests · Tour + coffee + Q&amp;A</div>
+          </div>
+        </div>
+        <div class="ticket">
+          <div class="radio"></div>
+          <div class="body">
+            <div class="name">Group RSVP <span style="float: right;" class="price">Free</span></div>
+            <div class="desc">5+ guests · Please note in confirmation</div>
+          </div>
+        </div>
+
+        <a href="events.html#rsvp" class="register-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+          Reserve my spot
+        </a>
+
+        <div class="checkout-foot">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Free RSVP</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Confirmation by email</span>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/img/yes-logo.png" alt="YES">
+          <div class="text">Youth Empowerment School<span>Lead · Serve · Impact</span></div>
+        </div>
+        <p class="footer-tag">A faith-rooted K–12 academy raising the next generation of servant-leaders. An initiative of Outpouring Missions International.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="events.html">Events</a></li><li><a href="donate.html">Donate</a></li></ul></div>
+      <div><h4>Admissions</h4><ul><li><a href="index.html#apply">Apply now</a></li><li><a href="about.html">Visit campus</a></li><li><a href="events.html">Open house</a></li><li><a href="donate.html">Tuition assistance</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>(210) 555-0123</li><li>hello@yesacademy.org</li><li>San Antonio, TX</li><li><a href="#">Instagram</a> · <a href="#">Facebook</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Youth Empowerment School. All rights reserved.</span>
+      <div class="footer-omi"><span>An initiative of</span><img src="assets/img/omi-logo-full-white.png" alt="OMI"></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+  // Ticket toggle
+  document.querySelectorAll('.ticket').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.ticket').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
