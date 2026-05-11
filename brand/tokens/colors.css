@@ -1,0 +1,68 @@
+/* ============================================================
+   Youth Empowerment School — Color Tokens
+   Faith-rooted. Confident. Rooted in crimson, navy, and gold.
+   ============================================================ */
+
+:root {
+  /* Primary — Crimson (heart) */
+  --yes-crimson-deep:    #8A1A24;
+  --yes-crimson:         #C8202E;
+  --yes-crimson-bright:  #E63946;
+  --yes-crimson-900:     #6B1219;
+  --yes-crimson-700:     #A51A25;
+  --yes-crimson-500:     #C8202E;
+  --yes-crimson-300:     #E87682;
+  --yes-crimson-100:     #F9D8DC;
+
+  /* Anchor — Navy (wisdom) */
+  --yes-navy-deep:       #0B1C3D;
+  --yes-navy:            #152B54;
+  --yes-navy-700:        #20407A;
+  --yes-navy-500:        #152B54;
+  --yes-navy-300:        #7A8AB4;
+  --yes-navy-100:        #D8DEEC;
+
+  /* Accent — Gold (honor) */
+  --yes-gold-deep:       #C79226;
+  --yes-gold:            #E8B33E;
+  --yes-gold-bright:     #F5C94A;
+  --yes-gold-100:        #FBE7B0;
+
+  /* Supporting */
+  --yes-ivory:           #FBF8F1;   /* warm paper */
+  --yes-stone:           #E8E2D4;   /* soft border */
+  --yes-sage:            #5B7560;   /* scripture green accent */
+
+  /* Neutrals */
+  --yes-white:           #FFFFFF;
+  --yes-offwhite:        #F7F4EC;
+  --yes-mist:            #DCD6C6;
+  --yes-graphite:        #2D2A25;
+  --yes-charcoal:        #16130E;
+
+  /* Semantic */
+  --color-bg:            var(--yes-ivory);
+  --color-surface:       var(--yes-white);
+  --color-text:          var(--yes-navy-deep);
+  --color-text-muted:    var(--yes-graphite);
+  --color-border:        var(--yes-stone);
+  --color-primary:       var(--yes-crimson);
+  --color-primary-fg:    var(--yes-white);
+  --color-accent:        var(--yes-gold-deep);
+  --color-accent-fg:     var(--yes-navy-deep);
+  --color-link:          var(--yes-crimson);
+  --color-link-hover:    var(--yes-crimson-deep);
+
+  /* Gradients */
+  --gradient-crimson:    linear-gradient(180deg, #8A1A24 0%, #C8202E 60%, #E63946 100%);
+  --gradient-sunrise:    linear-gradient(90deg, #C79226 0%, #F5C94A 100%);
+  --gradient-chapel:     linear-gradient(135deg, #0B1C3D 0%, #152B54 55%, #C8202E 100%);
+  --gradient-crest:      radial-gradient(circle at 30% 20%, rgba(245,201,74,0.25), transparent 55%), linear-gradient(135deg, #0B1C3D 0%, #152B54 100%);
+
+  /* Shadows — warm */
+  --shadow-sm:   0 1px 2px rgba(11, 28, 61, 0.08);
+  --shadow-md:   0 6px 20px rgba(11, 28, 61, 0.14);
+  --shadow-lg:   0 20px 48px rgba(11, 28, 61, 0.22);
+  --shadow-gold: 0 8px 24px rgba(199, 146, 38, 0.32);
+  --shadow-crimson: 0 10px 28px rgba(200, 32, 46, 0.30);
+}
