@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YES — Letterhead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #C8202E;
+    --crimson-deep: #8A1A24;
+    --navy: #152B54;
+    --navy-deep: #0B1C3D;
+    --gold: #E8B33E;
+    --gold-deep: #C79226;
+    --ivory: #FBF8F1;
+    --stone: #E8E2D4;
+    --graphite: #2D2A25;
+  }
+  html, body { margin: 0; padding: 0; background: #e8e2d4; }
+  body { font-family: "Inter", system-ui, sans-serif; color: var(--navy-deep); }
+
+  .page-wrap {
+    padding: 40px 20px;
+    display: flex; justify-content: center;
+  }
+  .toolbar {
+    max-width: 8.5in; margin: 0 auto 24px; display: flex; justify-content: space-between; align-items: center;
+    font-family: "Oswald", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--graphite);
+  }
+  .toolbar .left { display: flex; align-items: center; gap: 12px; }
+  .toolbar .left .dot { width: 8px; height: 8px; background: var(--crimson); border-radius: 50%; }
+  .toolbar button, .toolbar a {
+    background: var(--crimson); color: white; padding: 8px 16px; border: none; cursor: pointer;
+    font-family: "Oswald", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+  }
+  .toolbar a.secondary { background: transparent; color: var(--navy-deep); border: 1px solid var(--navy-deep); }
+
+  .sheet {
+    width: 8.5in; min-height: 11in; background: white;
+    padding: 0.85in 0.9in 0.7in;
+    box-shadow: 0 30px 80px -20px rgba(11,28,61,0.35), 0 6px 12px rgba(11,28,61,0.1);
+    position: relative; overflow: hidden;
+    box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .sheet::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 12px;
+    background: linear-gradient(180deg, #8A1A24 0%, #C8202E 60%, #E63946 100%);
+  }
+  .sheet::after {
+    content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(90deg, #C79226 0%, #F5C94A 100%);
+  }
+
+  .l-head { display: flex; align-items: flex-start; gap: 18px; padding-top: 6px; }
+  .l-head img.crest { width: 84px; height: 92px; object-fit: contain; flex-shrink: 0; }
+  .l-head .wm {
+    font-family: "Playfair Display", Georgia, serif; font-weight: 700;
+    font-size: 22px; line-height: 1.05; color: var(--navy-deep);
+    letter-spacing: -0.01em;
+  }
+  .l-head .wm small {
+    display: block; font-family: "Oswald", sans-serif; font-weight: 500;
+    font-size: 10px; letter-spacing: 0.22em; color: var(--crimson);
+    text-transform: uppercase; margin-top: 6px;
+  }
+  .l-head .addr {
+    margin-left: auto; text-align: right;
+    font-family: "JetBrains Mono", monospace; font-size: 9px; line-height: 1.7;
+    color: var(--graphite); letter-spacing: 0.04em;
+  }
+
+  .l-rule { height: 1px; background: var(--gold-deep); opacity: 0.55; margin-top: 4px; }
+  .l-date { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--graphite); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .l-body {
+    font-family: "Cormorant Garamond", Georgia, serif; font-size: 16px; line-height: 1.6;
+    color: var(--graphite); flex: 1;
+  }
+  .l-body p { margin: 0 0 14px; }
+  .l-body p:first-child { font-size: 17px; color: var(--navy-deep); }
+  .l-body strong { color: var(--navy-deep); font-weight: 600; }
+
+  .l-close { display: flex; flex-direction: column; gap: 4px; }
+  .l-sign {
+    font-family: "Caveat", cursive; font-weight: 700;
+    font-size: 36px; color: var(--crimson); line-height: 1;
+    transform: rotate(-2deg); transform-origin: left;
+    display: inline-block;
+  }
+  .l-sign-name {
+    font-family: "Oswald", sans-serif; font-size: 10px;
+    color: var(--navy-deep); letter-spacing: 0.18em;
+    text-transform: uppercase; margin-top: 6px;
+  }
+
+  .l-foot {
+    margin-top: 8px; padding-top: 12px;
+    border-top: 1px solid var(--stone);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Oswald", sans-serif; font-size: 9px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--graphite);
+  }
+  .l-foot .pillars { color: var(--crimson); font-weight: 600; }
+  .l-foot .pillars span { padding: 0 6px; }
+
+  /* Editable mode */
+  [contenteditable="true"] { outline: none; }
+  [contenteditable="true"]:hover { background: rgba(232,179,62,0.08); }
+  [contenteditable="true"]:focus { background: rgba(232,179,62,0.16); }
+
+  @media print {
+    body { background: white; }
+    .toolbar, .page-wrap { padding: 0; margin: 0; }
+    .toolbar { display: none !important; }
+    .sheet { box-shadow: none; width: 100%; min-height: auto; padding: 0.85in 0.9in 0.7in; }
+    @page { size: letter; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="left">
+    <span class="dot"></span>
+    <span>YES Letterhead · 8.5″ × 11″ · Click any text to edit</span>
+  </div>
+  <div style="display:flex;gap:10px;">
+    <a href="index.html" class="secondary">← Brand Kit</a>
+    <button onclick="window.print()">Print / Save PDF</button>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="sheet">
+    <div class="l-head">
+      <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+      <div class="wm" contenteditable="true">Youth Empowerment School<small>Faith · Learning · Character · Impact</small></div>
+      <div class="addr" contenteditable="true">
+        123 Empowerment Way<br>
+        City, State 00000<br>
+        +1 (234) 709-0022<br>
+        youthempowermentschool.live
+      </div>
+    </div>
+
+    <div class="l-rule"></div>
+
+    <div class="l-date" contenteditable="true">APRIL 15, 2026</div>
+
+    <div class="l-body" contenteditable="true">
+      <p>Dear Family,</p>
+      <p>It is with great joy that we welcome you to the Youth Empowerment School community. Your decision to entrust us with your child's education is one we hold with deep gratitude and responsibility.</p>
+      <p>At YES, we believe every young person carries within them a calling — a unique purpose woven by the Creator. Our mission is to draw that purpose out through Christ-centered teaching, rigorous academics, and the kind of character formation that lasts a lifetime.</p>
+      <p>We look forward to walking alongside your family in the year ahead. Please don't hesitate to reach out with any questions, prayer requests, or moments of celebration you'd like to share.</p>
+      <p><strong>Welcome home.</strong></p>
+    </div>
+
+    <div class="l-close">
+      <div class="l-sign" contenteditable="true">Amara Johnson</div>
+      <div class="l-sign-name" contenteditable="true">Amara Johnson · Head of School</div>
+    </div>
+
+    <div class="l-foot">
+      <span>Est. 2024 · Pre-K through 12</span>
+      <span class="pillars"><span>Faith</span>·<span>Learning</span>·<span>Character</span>·<span>Impact</span></span>
+      <span>Tuition-Free</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
