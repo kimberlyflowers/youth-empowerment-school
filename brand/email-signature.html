@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YES — Email Signature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #C8202E; --navy: #0B1C3D; --gold: #C79226;
+    --stone: #E8E2D4; --graphite: #2D2A25; --ivory: #FBF8F1;
+  }
+  html, body { margin: 0; padding: 0; background: #e8e2d4; font-family: "Inter", system-ui, sans-serif; color: var(--navy); }
+
+  .page { max-width: 820px; margin: 0 auto; padding: 40px 20px; }
+  .toolbar {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+    font-family: "Oswald", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .toolbar .left { display: flex; align-items: center; gap: 12px; }
+  .toolbar .left .dot { width: 8px; height: 8px; background: var(--crimson); border-radius: 50%; }
+  .toolbar a, .toolbar button {
+    background: var(--crimson); color: white; padding: 8px 16px; border: none; cursor: pointer;
+    font-family: "Oswald", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+  }
+  .toolbar a.secondary { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+
+  h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 24px; color: var(--navy); margin: 32px 0 12px; letter-spacing: -0.01em; }
+  .hint { font-family: Georgia, serif; font-style: italic; font-size: 14px; color: var(--graphite); margin: 0 0 18px; }
+
+  .preview-card { background: white; padding: 24px; box-shadow: 0 12px 32px -8px rgba(11,28,61,0.18); position: relative; }
+  .preview-card .label {
+    position: absolute; top: 10px; right: 12px;
+    font-family: "Oswald", sans-serif; font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--graphite);
+  }
+
+  .copy-btn {
+    background: var(--navy); color: white; padding: 10px 20px;
+    font-family: "Oswald", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    border: none; cursor: pointer; margin-top: 12px;
+  }
+  .copy-btn.ok { background: #3F6A2A; }
+
+  .controls { background: white; padding: 18px 22px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+  .controls label {
+    display: flex; flex-direction: column; gap: 4px;
+    font-family: "Oswald", sans-serif; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--graphite);
+  }
+  .controls input {
+    border: none; border-bottom: 1px solid var(--stone);
+    padding: 6px 0; font-family: "Inter", sans-serif; font-size: 14px;
+    color: var(--navy); background: transparent;
+  }
+  .controls input:focus { outline: none; border-bottom-color: var(--crimson); }
+
+  /* === SIGNATURE BLOCK STYLES (these get cloned into clipboard) === */
+  .sig-wrap { font-family: Arial, Helvetica, sans-serif; color: #2D2A25; font-size: 13px; line-height: 1.45; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="toolbar">
+    <div class="left">
+      <span class="dot"></span>
+      <span>YES Email Signature · Fill in & copy to Gmail / Outlook / Apple Mail</span>
+    </div>
+    <a href="index.html" class="secondary">← Brand Kit</a>
+  </div>
+
+  <div class="controls">
+    <label>Name<input id="f-name" value="Amara Johnson"></label>
+    <label>Title<input id="f-title" value="Head of School"></label>
+    <label>Email<input id="f-email" value="amara@youthempowermentschool.live"></label>
+    <label>Phone<input id="f-phone" value="+1 (234) 709-0022"></label>
+  </div>
+
+  <h2>Default — Compact</h2>
+  <p class="hint">For most staff. Copy the block below and paste into your email client's signature settings.</p>
+  <div class="preview-card">
+    <span class="label">PREVIEW · COMPACT</span>
+    <div id="sig-compact" class="sig-wrap"></div>
+  </div>
+  <button class="copy-btn" data-copy="sig-compact">Copy Compact Signature</button>
+
+  <h2>Formal — With Crest</h2>
+  <p class="hint">For external communications, official letters, board correspondence.</p>
+  <div class="preview-card">
+    <span class="label">PREVIEW · FORMAL</span>
+    <div id="sig-formal" class="sig-wrap"></div>
+  </div>
+  <button class="copy-btn" data-copy="sig-formal">Copy Formal Signature</button>
+
+  <h2>How to install</h2>
+  <p class="hint" style="max-width: 60ch">
+    <strong>Gmail</strong> — Settings → See all settings → Signature → Create new → paste.<br>
+    <strong>Outlook</strong> — File → Options → Mail → Signatures → New → paste.<br>
+    <strong>Apple Mail</strong> — Mail → Settings → Signatures → + → paste, then uncheck "Always match my default message font."
+  </p>
+</div>
+
+<script>
+const LOGO_URL = location.origin + location.pathname.replace(/[^/]*$/, '') + 'assets/yes-logo-official.png';
+
+function render() {
+  const name = document.getElementById('f-name').value;
+  const title = document.getElementById('f-title').value;
+  const email = document.getElementById('f-email').value;
+  const phone = document.getElementById('f-phone').value;
+
+  // COMPACT — text only, color rule, no image
+  document.getElementById('sig-compact').innerHTML = `
+    <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#2D2A25;font-size:13px;line-height:1.45;border-collapse:collapse;">
+      <tr>
+        <td style="padding-bottom:6px;">
+          <span style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-weight:bold;color:#0B1C3D;">${name}</span><br>
+          <span style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;color:#C8202E;text-transform:uppercase;font-weight:600;">${title}</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="border-top:2px solid #C8202E;padding-top:8px;font-family:Arial,sans-serif;font-size:12px;color:#2D2A25;">
+          <strong style="color:#0B1C3D;font-family:Georgia,serif;font-size:13px;">Youth Empowerment School</strong> &nbsp;·&nbsp; <span style="color:#C8202E;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Tuition-Free · Pre-K–12</span><br>
+          <a href="mailto:${email}" style="color:#2D2A25;text-decoration:none;">${email}</a> &nbsp;·&nbsp;
+          <span>${phone}</span> &nbsp;·&nbsp;
+          <a href="https://youthempowermentschool.live" style="color:#C8202E;text-decoration:none;">youthempowermentschool.live</a>
+        </td>
+      </tr>
+    </table>
+  `;
+
+  // FORMAL — with logo and pillars
+  document.getElementById('sig-formal').innerHTML = `
+    <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#2D2A25;font-size:13px;line-height:1.45;border-collapse:collapse;">
+      <tr>
+        <td style="vertical-align:top;padding-right:18px;border-right:3px solid #C8202E;">
+          <img src="${LOGO_URL}" alt="YES" width="72" height="80" style="display:block;border:0;">
+        </td>
+        <td style="vertical-align:top;padding-left:18px;">
+          <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:bold;color:#0B1C3D;line-height:1.1;">${name}</div>
+          <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;color:#C8202E;text-transform:uppercase;font-weight:600;margin-top:3px;">${title}</div>
+          <div style="font-family:Georgia,serif;font-size:13px;font-weight:bold;color:#0B1C3D;margin-top:10px;">Youth Empowerment School</div>
+          <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:1.5px;color:#C79226;text-transform:uppercase;font-weight:600;margin-top:2px;">Faith · Learning · Character · Impact</div>
+          <div style="font-family:Arial,sans-serif;font-size:12px;color:#2D2A25;margin-top:10px;">
+            <a href="mailto:${email}" style="color:#2D2A25;text-decoration:none;">${email}</a><br>
+            <span>${phone}</span><br>
+            <a href="https://youthempowermentschool.live" style="color:#C8202E;text-decoration:none;font-weight:600;">youthempowermentschool.live</a>
+          </div>
+          <div style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:1.5px;color:#2D2A25;text-transform:uppercase;margin-top:10px;border-top:1px solid #E8E2D4;padding-top:6px;">
+            <span style="color:#C8202E;">●</span> Tuition-Free Christian Education · Pre-K through 12
+          </div>
+        </td>
+      </tr>
+    </table>
+  `;
+}
+
+['f-name','f-title','f-email','f-phone'].forEach(id => {
+  document.getElementById(id).addEventListener('input', render);
+});
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const el = document.getElementById(btn.dataset.copy);
+    const html = el.innerHTML;
+    const text = el.innerText;
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' }),
+        })
+      ]);
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied — Paste into your email client';
+      btn.classList.add('ok');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok'); }, 2400);
+    } catch (e) {
+      // fallback
+      const range = document.createRange();
+      range.selectNode(el);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      btn.textContent = '✓ Copied';
+      btn.classList.add('ok');
+      setTimeout(() => { btn.textContent = 'Copy Signature'; btn.classList.remove('ok'); }, 2400);
+    }
+  });
+});
+
+render();
+</script>
+</body>
+</html>
