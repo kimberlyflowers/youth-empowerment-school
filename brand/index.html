@@ -1,0 +1,2205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YES — Youth Empowerment School · Brand Kit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Caveat:wght@500;700&family=Kaushan+Script&family=Satisfy&family=Dancing+Script:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tokens/colors.css">
+<link rel="stylesheet" href="tokens/typography.css">
+<link rel="stylesheet" href="tokens/spacing.css">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--yes-ivory);
+    color: var(--yes-navy-deep);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: var(--yes-crimson); text-decoration: none; }
+
+  /* Layout primitives */
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6); }
+  section { padding: var(--space-9) 0; }
+
+  .section-head {
+    display: flex; align-items: baseline; gap: var(--space-6);
+    margin-bottom: var(--space-7);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--yes-stone);
+  }
+  .section-head .num {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--yes-crimson);
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .section-head h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.015em; line-height: 1.08;
+    margin: 0; flex: 1; text-wrap: balance;
+    color: var(--yes-navy-deep);
+  }
+  .section-head .tagline {
+    font-family: var(--font-script);
+    color: var(--yes-crimson);
+    font-size: 1.85rem; line-height: 1;
+    align-self: flex-end; font-weight: 700;
+    transform: rotate(-1.5deg);
+  }
+
+  .eyebrow {
+    font-family: var(--font-athletic); font-weight: 600;
+    font-size: 0.72rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--yes-crimson);
+  }
+
+  /* TOP BAR */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251,248,241,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--yes-stone);
+  }
+  .topbar-inner {
+    max-width: 1440px; margin: 0 auto;
+    padding: 12px var(--space-6);
+    display: flex; align-items: center; gap: var(--space-6);
+  }
+  .topbar .brand {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--yes-navy-deep);
+  }
+  .topbar .brand img.crest { width: 42px; height: 42px; }
+  .topbar .brand .txt { display: flex; flex-direction: column; line-height: 1.1; }
+  .topbar .brand .txt .wm {
+    font-family: var(--font-athletic); font-weight: 700;
+    font-size: 1.1rem; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .topbar .brand .txt .sub {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 11px; color: var(--yes-crimson);
+    margin-top: 2px;
+  }
+  .topbar nav {
+    display: flex; gap: var(--space-5); flex: 1; justify-content: center;
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--yes-graphite);
+  }
+  .topbar nav a { color: inherit; transition: color 150ms; }
+  .topbar nav a:hover { color: var(--yes-crimson); }
+  .topbar .version {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--yes-graphite); letter-spacing: 0.04em;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 720px;
+    background: var(--yes-crimson-deep);
+    color: var(--yes-white);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 600px at 85% 25%, rgba(245,201,74,0.25), transparent 55%),
+      radial-gradient(700px 500px at 15% 80%, rgba(11,28,61,0.45), transparent 60%),
+      linear-gradient(180deg, #8A1A24 0%, #C8202E 100%);
+  }
+  /* subtle paper texture */
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.9), transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.9), transparent 80%);
+  }
+  .hero-grid {
+    position: relative; z-index: 2;
+    max-width: 1440px; margin: 0 auto;
+    padding: var(--space-9) var(--space-6) var(--space-8);
+    min-height: 720px;
+    display: grid; grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-7); align-items: center;
+  }
+  .hero-copy .kicker {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 0.75rem; letter-spacing: 0.28em;
+    color: var(--yes-gold-bright); text-transform: uppercase;
+    margin-bottom: var(--space-5);
+    display: flex; align-items: center; gap: var(--space-3);
+  }
+  .hero-copy .kicker::before {
+    content: ""; width: 40px; height: 1px; background: var(--yes-gold-bright);
+  }
+  .hero-copy h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(3rem, 6.5vw, 5.75rem);
+    line-height: 0.98; letter-spacing: -0.02em;
+    margin: 0 0 var(--space-5);
+  }
+  .hero-copy h1 .say {
+    display: block;
+    font-family: var(--font-script); font-weight: 700;
+    font-size: 0.5em; color: var(--yes-gold-bright);
+    letter-spacing: 0; line-height: 1;
+    transform: rotate(-2deg); transform-origin: left center;
+    margin-bottom: -0.1em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .hero-copy h1 em {
+    font-style: italic; font-weight: 400;
+    color: var(--yes-gold-bright);
+  }
+  .hero-copy .lede {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 1.25rem; line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    max-width: 50ch; margin: 0 0 var(--space-7);
+  }
+  .hero-pillars {
+    display: flex; gap: var(--space-2); flex-wrap: wrap;
+    font-family: var(--font-athletic); text-transform: uppercase;
+    letter-spacing: 0.18em; font-weight: 500; font-size: 0.72rem;
+  }
+  .hero-pillars div {
+    padding: 10px 18px;
+    border: 1px solid rgba(245,201,74,0.55);
+    background: rgba(245,201,74,0.1);
+    color: var(--yes-gold-bright);
+  }
+
+  /* Hero crest showcase */
+  .hero-mark {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--space-4);
+  }
+  .hero-crest-frame {
+    position: relative;
+    width: 100%; max-width: 440px;
+    aspect-ratio: 0.9;
+    display: flex; align-items: center; justify-content: center;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.45));
+  }
+  .hero-crest-frame img.crest {
+    width: 100%; height: auto;
+  }
+
+  .hero-meta {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    max-width: 1440px; margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    z-index: 3;
+  }
+
+  /* MISSION */
+  .mission { background: var(--yes-ivory); }
+  .mission-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8); align-items: start;
+  }
+  .mission-statement {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    line-height: 1.2; letter-spacing: -0.01em;
+    max-width: 30ch; color: var(--yes-navy-deep);
+    text-wrap: balance;
+  }
+  .mission-statement em {
+    font-style: italic;
+    color: var(--yes-crimson);
+    font-family: var(--font-display);
+  }
+  .verse-callout {
+    margin-top: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    border-left: 3px solid var(--yes-gold-deep);
+    background: var(--yes-white);
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 1.05rem; line-height: 1.5;
+    color: var(--yes-graphite);
+  }
+  .verse-callout cite {
+    display: block;
+    font-family: var(--font-athletic); font-style: normal;
+    font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yes-crimson); margin-top: var(--space-2);
+  }
+
+  .promises {
+    display: flex; gap: var(--space-4); margin-top: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .promise {
+    flex: 1; min-width: 170px;
+    padding: var(--space-5);
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    border-top: 3px solid var(--yes-crimson);
+  }
+  .promise .big {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.75rem; color: var(--yes-navy-deep);
+    letter-spacing: -0.01em; line-height: 1;
+  }
+  .promise p { margin: var(--space-2) 0 0; font-family: var(--font-serif); font-size: 0.95rem; color: var(--yes-graphite); line-height: 1.5; }
+
+  .pillars {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4); margin-top: var(--space-4);
+  }
+  .pillar {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    padding: var(--space-5);
+    transition: transform 200ms, box-shadow 200ms;
+  }
+  .pillar:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .pillar .icon {
+    width: 32px; height: 32px; margin-bottom: var(--space-3);
+    color: var(--yes-crimson);
+  }
+  .pillar h4 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.2rem; margin: 0 0 var(--space-2);
+    letter-spacing: -0.01em;
+    color: var(--yes-navy-deep);
+  }
+  .pillar p {
+    margin: 0; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.5;
+    color: var(--yes-graphite);
+  }
+
+  /* LOGO SECTION */
+  .logo-section { background: var(--yes-white); border-top: 1px solid var(--yes-stone); border-bottom: 1px solid var(--yes-stone); }
+  .logo-primary-card {
+    background: var(--gradient-crimson);
+    padding: var(--space-9);
+    position: relative; overflow: hidden;
+    min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: var(--space-4);
+    box-shadow: var(--shadow-lg);
+  }
+  .logo-primary-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+  }
+  .logo-primary-card::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+    background: var(--gradient-sunrise);
+  }
+  .logo-primary-card .showcase {
+    position: relative; z-index: 1; text-align: center;
+    display: flex; align-items: center; gap: var(--space-7);
+  }
+  .logo-primary-card .showcase img.crest {
+    width: 200px; height: 220px;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35));
+  }
+  .logo-primary-card .showcase .words {
+    text-align: left; color: white;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 0.95; letter-spacing: -0.01em;
+  }
+  .logo-primary-card .showcase .words small {
+    display: block;
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 0.22em; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yes-gold-bright);
+    margin-top: 0.5em;
+  }
+
+  .logo-variants {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .logo-tile {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: var(--space-5);
+  }
+  .logo-tile .label {
+    position: absolute; bottom: var(--space-3); left: var(--space-4);
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.75;
+  }
+  .tile-a { background: var(--yes-navy-deep); color: white; }
+  .tile-b { background: var(--yes-crimson); color: white; }
+  .tile-c { background: var(--yes-ivory); color: var(--yes-navy-deep); border: 1px solid var(--yes-stone); }
+  .tile-d { background: var(--yes-gold-deep); color: var(--yes-navy-deep); }
+  .logo-tile img.crest { width: 70%; height: 70%; }
+
+  .lockup-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .lockup-card {
+    background: var(--yes-ivory);
+    border: 1px solid var(--yes-stone);
+    padding: var(--space-6) var(--space-5) var(--space-4);
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 280px; text-align: center; gap: var(--space-3);
+  }
+  .lockup-card .kind {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yes-graphite);
+    align-self: flex-start;
+  }
+  .lockup-card .stage {
+    flex: 1; display: flex; align-items: center; justify-content: center; width: 100%;
+  }
+  .lockup-card .caption {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1rem; color: var(--yes-navy-deep);
+    letter-spacing: -0.01em;
+  }
+  .lockup-card .sub {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.85rem; color: var(--yes-graphite);
+  }
+
+  /* Lockup variants */
+  .lockup-horizontal {
+    display: flex; align-items: center; gap: 16px;
+    color: var(--yes-navy-deep);
+  }
+  .lockup-horizontal img.crest { width: 64px; height: 70px; flex-shrink: 0; }
+  .lockup-horizontal .wm {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1;
+    text-align: left;
+  }
+  .lockup-horizontal .wm .sub {
+    display: block; font-family: var(--font-athletic); font-weight: 500;
+    font-size: 10px; letter-spacing: 0.22em;
+    color: var(--yes-crimson);
+    text-transform: uppercase; margin-top: 6px;
+  }
+  .lockup-stacked {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: var(--yes-navy-deep);
+  }
+  .lockup-stacked img.crest { width: 90px; height: 100px; }
+  .lockup-stacked .wm {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1; text-align: center;
+  }
+  .lockup-stacked .cap {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--yes-crimson); margin-top: 4px;
+  }
+  .lockup-mono {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--yes-navy-deep);
+  }
+  .lockup-mono .athletic {
+    font-family: var(--font-athletic); font-weight: 700;
+    font-size: 4.5rem; line-height: 0.85;
+    letter-spacing: 0.02em;
+    color: var(--yes-crimson);
+  }
+  .lockup-mono .cap {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--yes-navy-deep);
+  }
+
+  .donts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .dont {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    padding: var(--space-5);
+    display: flex; flex-direction: column; align-items: center; gap: var(--space-3);
+    position: relative;
+  }
+  .dont .example {
+    width: 100%; aspect-ratio: 1.4;
+    background: var(--yes-ivory);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .dont .tag {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--yes-crimson); color: white;
+    font-family: var(--font-mono);
+    font-size: 10px; padding: 2px 6px;
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+  }
+  .dont p { margin: 0; font-family: var(--font-serif); font-size: 0.9rem; color: var(--yes-graphite); text-align: center; line-height: 1.45; }
+  .dont .example svg, .dont .example img { width: 65%; height: 65%; object-fit: contain; }
+
+  /* COLOR */
+  .color-section { background: var(--yes-ivory); }
+  .swatch-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .swatch-row.neutrals { grid-template-columns: 200px repeat(5, 1fr); }
+  .swatch-label {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: var(--space-3) 0;
+  }
+  .swatch-label .title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.15rem; letter-spacing: -0.01em;
+    color: var(--yes-navy-deep);
+  }
+  .swatch-label .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--yes-graphite); margin-top: 4px;
+    letter-spacing: 0.04em; line-height: 1.5;
+  }
+  .swatch {
+    aspect-ratio: 1.25;
+    padding: var(--space-4);
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+    transition: transform 200ms;
+  }
+  .swatch:hover { transform: translateY(-2px); }
+  .swatch .name {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.05rem; line-height: 1.15;
+  }
+  .swatch .name small {
+    display: block; font-family: var(--font-mono);
+    font-size: 10px; font-weight: 400; letter-spacing: 0.06em;
+    margin-top: 4px; opacity: 0.8;
+  }
+  .swatch .hex {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .swatch .chip {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--font-mono); font-size: 9px;
+    padding: 2px 6px;
+    background: rgba(255,255,255,0.16);
+    letter-spacing: 0.08em;
+  }
+  .swatch.dark { color: white; }
+  .swatch.dark .chip { background: rgba(255,255,255,0.16); }
+  .swatch.light { color: var(--yes-navy-deep); border: 1px solid var(--yes-stone); }
+  .swatch.light .chip { background: rgba(11,28,61,0.08); }
+
+  .gradients {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+  }
+  .gradient-card {
+    overflow: hidden;
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+  }
+  .gradient-card .bar { height: 160px; }
+  .gradient-card .info { padding: var(--space-4); }
+  .gradient-card .name {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.05rem; letter-spacing: -0.01em;
+    color: var(--yes-navy-deep);
+  }
+  .gradient-card .stops {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--yes-graphite); margin-top: 4px;
+  }
+  .gradient-card .use { font-family: var(--font-serif); font-size: 0.9rem; color: var(--yes-graphite); margin-top: var(--space-2); font-style: italic; }
+
+  .ratio-bar {
+    height: 44px; overflow: hidden;
+    display: flex; margin-top: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .ratio-bar > div {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+
+  /* TYPE */
+  .type-section { background: var(--yes-white); }
+  .type-specimen {
+    padding: var(--space-7) 0; border-top: 1px solid var(--yes-stone);
+    display: grid; grid-template-columns: 280px 1fr; gap: var(--space-7);
+    align-items: start;
+  }
+  .type-specimen:first-of-type { border-top: none; padding-top: 0; }
+  .type-meta .role {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.35rem; letter-spacing: -0.01em;
+    margin: 0 0 var(--space-2);
+    color: var(--yes-navy-deep);
+  }
+  .type-meta .family {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.08em; color: var(--yes-graphite);
+    text-transform: uppercase;
+  }
+  .type-meta .note {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.95rem; color: var(--yes-graphite);
+    margin-top: var(--space-3); line-height: 1.5;
+    max-width: 30ch;
+  }
+  .specimen-display {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(3rem, 7vw, 5.75rem); line-height: 0.98;
+    letter-spacing: -0.02em; color: var(--yes-navy-deep);
+    margin: 0;
+  }
+  .specimen-display em { font-style: italic; font-weight: 400; color: var(--yes-crimson); }
+  .specimen-serif {
+    font-family: var(--font-serif); font-weight: 500; font-style: italic;
+    font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.35;
+    color: var(--yes-navy-deep);
+    margin: 0; max-width: 32ch;
+  }
+  .specimen-script {
+    font-family: var(--font-script); font-weight: 700;
+    font-size: clamp(3rem, 6vw, 5rem); line-height: 1;
+    color: var(--yes-crimson);
+    margin: 0;
+  }
+  .specimen-body {
+    font-family: var(--font-body);
+    font-size: 1.125rem; line-height: 1.65;
+    color: var(--yes-graphite); max-width: 55ch;
+    margin: 0;
+  }
+  .specimen-athletic {
+    font-family: var(--font-athletic); font-weight: 700;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: var(--yes-crimson);
+    letter-spacing: 0.03em; text-transform: uppercase;
+    line-height: 0.95; margin: 0;
+  }
+  .specimen-mono {
+    font-family: var(--font-mono); font-size: 0.95rem;
+    color: var(--yes-navy-deep); line-height: 1.6; margin: 0;
+  }
+  .glyph-strip {
+    margin-top: var(--space-4);
+    font-family: var(--font-display); font-weight: 400;
+    font-size: 1.15rem; color: var(--yes-graphite);
+    letter-spacing: 0.02em;
+    border-top: 1px dashed var(--yes-stone);
+    padding-top: var(--space-3);
+  }
+
+  .scale-table {
+    width: 100%; margin-top: var(--space-6);
+    border-collapse: collapse;
+  }
+  .scale-table td {
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--yes-stone);
+    vertical-align: middle;
+  }
+  .scale-table .token {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.05em; color: var(--yes-crimson);
+    width: 120px;
+  }
+  .scale-table .sample {
+    color: var(--yes-navy-deep);
+    letter-spacing: -0.01em;
+  }
+  .scale-table .specs {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--yes-graphite); text-align: right;
+    white-space: nowrap;
+  }
+
+  /* VOICE */
+  .voice-section { background: var(--yes-ivory); }
+  .voice-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+  }
+  .voice-card {
+    background: var(--yes-white);
+    padding: var(--space-5);
+    border: 1px solid var(--yes-stone);
+  }
+  .voice-card h4 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.1rem; letter-spacing: -0.01em;
+    margin: 0 0 var(--space-3);
+    display: flex; align-items: center; gap: var(--space-2);
+    color: var(--yes-navy-deep);
+  }
+  .voice-card h4::before {
+    content: "";
+    width: 20px; height: 2px; background: var(--yes-crimson);
+  }
+  .voice-card p { margin: 0; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.55; color: var(--yes-graphite); }
+
+  .say-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+  .say-card {
+    padding: var(--space-6);
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    position: relative;
+  }
+  .say-card .mark {
+    font-family: var(--font-athletic); font-weight: 600;
+    font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    display: inline-block; margin-bottom: var(--space-3);
+  }
+  .say-card.do .mark { background: #DCEAD3; color: #3F6A2A; }
+  .say-card.dont .mark { background: #F9D8DC; color: var(--yes-crimson-deep); }
+  .say-card blockquote {
+    margin: 0; font-family: var(--font-display);
+    font-weight: 600; font-size: 1.4rem;
+    line-height: 1.3; letter-spacing: -0.01em;
+    color: var(--yes-navy-deep); text-wrap: balance;
+  }
+  .say-card blockquote::before { content: "“"; color: var(--yes-crimson); margin-right: 4px; }
+  .say-card blockquote::after { content: "”"; color: var(--yes-crimson); margin-left: 4px; }
+
+  /* IMAGERY */
+  .imagery-section { background: var(--yes-white); }
+  .imagery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: var(--space-4);
+  }
+  .img-tile {
+    position: relative; overflow: hidden;
+    color: white; padding: var(--space-5);
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .img-tile.hero { grid-row: span 2; }
+  .img-tile .caption {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.05rem; letter-spacing: -0.01em;
+    position: relative; z-index: 2;
+  }
+  .img-tile .hint {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.85rem; opacity: 0.9; margin-top: 4px;
+    position: relative; z-index: 2;
+  }
+  .img-tile::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(11,28,61,0.78) 100%);
+    z-index: 1;
+  }
+  .img-a {
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 14px, transparent 14px 28px),
+      linear-gradient(135deg, #6B1219 0%, #C8202E 100%);
+  }
+  .img-b {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 14px, transparent 14px 28px),
+      linear-gradient(135deg, #152B54 0%, #0B1C3D 100%);
+  }
+  .img-c {
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 10px, transparent 10px 24px),
+      linear-gradient(135deg, #C8202E 0%, #E63946 100%);
+  }
+  .img-d {
+    background:
+      repeating-linear-gradient(135deg, rgba(0,0,0,0.06) 0 12px, transparent 12px 26px),
+      linear-gradient(135deg, #C79226 0%, #F5C94A 100%);
+    color: var(--yes-navy-deep);
+  }
+  .img-d::after { background: linear-gradient(180deg, transparent 40%, rgba(199,146,38,0.75) 100%); }
+  .img-e {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 26px),
+      linear-gradient(135deg, #152B54 0%, #C8202E 100%);
+  }
+  .img-tile .ph-label {
+    position: absolute; top: 16px; left: 16px; z-index: 2;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 8px; background: rgba(0,0,0,0.35);
+  }
+
+  .imagery-rules {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .imagery-rules .rule {
+    font-family: var(--font-serif); font-size: 0.95rem; color: var(--yes-graphite);
+    line-height: 1.55; padding: var(--space-4);
+    border-left: 2px solid var(--yes-crimson);
+  }
+  .imagery-rules .rule strong {
+    display: block; color: var(--yes-navy-deep);
+    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+    margin-bottom: var(--space-1); letter-spacing: -0.01em;
+    font-style: normal;
+  }
+
+  /* MOTION */
+  .motion-section { background: var(--yes-navy-deep); color: var(--yes-white); }
+  .motion-section .section-head { border-bottom-color: rgba(255,255,255,0.12); }
+  .motion-section .section-head h2 { color: var(--yes-white); }
+  .motion-section .section-head .num,
+  .motion-section .section-head .tagline { color: var(--yes-gold-bright); }
+  .motion-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);
+    align-items: start;
+  }
+  .easing-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: var(--space-6);
+  }
+  .easing-card h4 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.15rem; margin: 0 0 var(--space-3);
+    letter-spacing: -0.01em;
+  }
+  .easing-viz {
+    width: 100%; height: 160px;
+    background: rgba(0,0,0,0.25);
+    position: relative; overflow: hidden;
+  }
+  .easing-viz .dot {
+    position: absolute; top: 50%; left: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--yes-gold-bright);
+    box-shadow: 0 0 24px rgba(245,201,74,0.9);
+    transform: translate(0, -50%);
+    animation: sweep 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes sweep {
+    0%   { left: 8px; }
+    45%  { left: calc(100% - 24px); }
+    55%  { left: calc(100% - 24px); }
+    100% { left: 8px; }
+  }
+  .easing-code {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--yes-gold-bright); margin-top: var(--space-3);
+    letter-spacing: 0.04em;
+  }
+  .motion-spec {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  .motion-spec .row {
+    display: flex; justify-content: space-between;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.85rem;
+  }
+  .motion-spec .row .tok {
+    font-family: var(--font-mono); color: var(--yes-gold-bright);
+    font-size: 11px; letter-spacing: 0.04em;
+  }
+  .motion-spec .row .val { color: rgba(255,255,255,0.75); font-family: var(--font-mono); font-size: 11px; }
+
+  .sweep-demo {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: var(--space-6);
+    min-height: 300px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .sweep-demo h4 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.15rem; margin: 0;
+    position: relative; z-index: 2;
+  }
+  .sweep-demo p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.95rem; color: rgba(255,255,255,0.75);
+    margin: 0; position: relative; z-index: 2;
+    max-width: 34ch; line-height: 1.55;
+  }
+  .sweep-demo .sweep {
+    position: absolute; inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(200,32,46,0.5) 50%, rgba(245,201,74,0.55) 65%, transparent 80%);
+    transform: translate(-100%, 100%);
+    animation: rise-sweep 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes rise-sweep {
+    0%   { transform: translate(-100%, 100%); opacity: 0; }
+    10%  { opacity: 1; }
+    70%  { transform: translate(100%, -100%); opacity: 0; }
+    100% { transform: translate(100%, -100%); opacity: 0; }
+  }
+
+  /* APPLICATIONS */
+  .applications-section { background: var(--yes-ivory); }
+  .app-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-4);
+  }
+  .app-card {
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    padding: var(--space-5);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    min-height: 320px;
+  }
+  .app-card .label {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yes-graphite); margin-bottom: var(--space-3);
+  }
+  .app-card .canvas {
+    flex: 1; 
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .app-card .caption {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1rem; margin-top: var(--space-3);
+    letter-spacing: -0.01em; color: var(--yes-navy-deep);
+  }
+  .app-card .caption small {
+    display: block; font-family: var(--font-serif); font-style: italic;
+    font-weight: 400; font-size: 0.85rem;
+    color: var(--yes-graphite); margin-top: 4px;
+  }
+
+  /* Web hero */
+  .app-web { grid-column: 1; grid-row: 1 / 3; min-height: 660px; }
+  .app-web .canvas { background: var(--gradient-crimson); min-height: 560px; padding: var(--space-6); align-items: stretch; color: white; flex-direction: column; }
+  .app-web .mini-nav {
+    display: flex; align-items: center; gap: var(--space-4);
+    font-family: var(--font-athletic); font-weight: 500; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .app-web .mini-nav img.crest { width: 38px; height: 42px; margin-right: auto; }
+  .app-web .mini-hero { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .app-web .script-line {
+    font-family: var(--font-script); font-weight: 700;
+    color: var(--yes-gold-bright); font-size: 2rem;
+    line-height: 1; margin-bottom: var(--space-3);
+    transform: rotate(-2deg); display: inline-block;
+  }
+  .app-web h5 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2); color: white;
+    text-wrap: balance;
+  }
+  .app-web .sub-line {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 1rem; color: rgba(255,255,255,0.85);
+    margin: 0 0 var(--space-5); max-width: 36ch;
+  }
+  .app-web .btn {
+    align-self: flex-start;
+    background: var(--gradient-sunrise);
+    color: var(--yes-navy-deep);
+    padding: 12px 24px;
+    font-family: var(--font-athletic); font-weight: 600;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Business card */
+  .app-card-biz .canvas {
+    background: #1a2842; padding: var(--space-5);
+    flex-direction: column; gap: var(--space-3);
+  }
+  .app-card-biz .bc-pair { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+  .app-card-biz .bc {
+    width: 100%; aspect-ratio: 1.75;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .app-card-biz .bc.front {
+    background: var(--yes-crimson);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .app-card-biz .bc.front::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(400px 250px at 30% 40%, rgba(245,201,74,0.25), transparent 55%);
+  }
+  .app-card-biz .bc.front::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: var(--gradient-sunrise);
+  }
+  .app-card-biz .bc.front img.crest { width: 58px; height: 64px; position: relative; z-index: 1; }
+  .app-card-biz .bc.back {
+    background: var(--yes-navy-deep);
+    color: white; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .app-card-biz .bc.back::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: var(--gradient-sunrise);
+  }
+  .app-card-biz .bc.back .info {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; padding: 14px 18px;
+  }
+  .app-card-biz .bc.back .name {
+    font-family: var(--font-display); font-weight: 700; font-size: 12px;
+    color: white; line-height: 1.1;
+  }
+  .app-card-biz .bc.back .role {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 7px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--yes-gold-bright); margin-top: 2px;
+  }
+  .app-card-biz .bc.back .rule {
+    width: 24px; height: 1px; background: var(--yes-gold-deep);
+    margin: 2px auto;
+  }
+  .app-card-biz .bc.back .contact {
+    font-family: var(--font-mono); font-size: 7.5px; line-height: 1.7;
+    color: rgba(255,255,255,0.85); letter-spacing: 0.04em;
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .app-card-biz .side-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .app-card-biz .side-label::before {
+    content: ""; width: 14px; height: 1px; background: rgba(255,255,255,0.3);
+  }
+
+  /* Social */
+  .app-social .canvas { background: var(--gradient-crimson); color: white; }
+  .app-social .avatar {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: var(--yes-navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid rgba(245,201,74,0.4);
+  }
+  .app-social .avatar img.crest { width: 70%; height: 70%; }
+
+  /* Merch / varsity */
+  .app-merch .canvas { background: var(--yes-navy-deep); color: white; padding: var(--space-5); }
+  .app-merch .jacket {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    gap: var(--space-3);
+  }
+  .app-merch .yes-word {
+    font-family: var(--font-athletic); font-weight: 700;
+    font-size: 4.5rem; line-height: 0.9;
+    color: var(--yes-crimson);
+    letter-spacing: 0.05em;
+    text-shadow: 0 3px 0 var(--yes-gold-deep);
+  }
+  .app-merch .rule {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 10px; letter-spacing: 0.3em;
+    color: var(--yes-gold-bright); text-transform: uppercase;
+  }
+
+  /* Certificate */
+  .app-cert .canvas { background: var(--yes-ivory); color: var(--yes-navy-deep); padding: var(--space-5); border: 1px solid var(--yes-stone); }
+  .app-cert .cert {
+    border: 2px solid var(--yes-gold-deep);
+    padding: var(--space-5); text-align: center; width: 100%;
+    display: flex; flex-direction: column; gap: var(--space-2); align-items: center;
+    position: relative;
+  }
+  .app-cert .cert::before, .app-cert .cert::after {
+    content: ""; position: absolute; width: 14px; height: 14px;
+    border: 2px solid var(--yes-gold-deep);
+  }
+  .app-cert .cert::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+  .app-cert .cert::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+  .app-cert .cert img.crest { width: 72px; height: 80px; }
+  .app-cert .cert h6 {
+    font-family: var(--font-display); font-weight: 700; font-size: 14px;
+    margin: 0; letter-spacing: 0.05em;
+  }
+  .app-cert .cert .fine {
+    font-family: var(--font-script); font-weight: 700;
+    color: var(--yes-crimson); font-size: 1.15rem;
+    margin: 0; transform: rotate(-2deg);
+  }
+  .app-cert .cert .line {
+    width: 60%; height: 1px;
+    background: var(--yes-navy-deep); opacity: 0.25;
+    margin-top: var(--space-2);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--yes-charcoal);
+    color: rgba(255,255,255,0.72);
+    padding: var(--space-8) 0;
+  }
+  footer .fgrid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--space-6);
+    align-items: start;
+  }
+  footer .flogo {
+    display: flex; align-items: center; gap: var(--space-4);
+    margin-bottom: var(--space-4); color: white;
+  }
+  footer .flogo img.crest { width: 54px; height: 60px; }
+  footer .flogo .txt {
+    font-family: var(--font-display); font-weight: 700;
+    letter-spacing: -0.01em; font-size: 1rem;
+  }
+  footer .flogo .txt small {
+    display: block; font-family: var(--font-athletic); font-weight: 500;
+    font-size: 9px; letter-spacing: 0.22em;
+    color: var(--yes-gold-bright); margin-top: 4px; text-transform: uppercase;
+  }
+  footer h5 {
+    font-family: var(--font-athletic); font-weight: 600; font-size: 0.75rem;
+    color: var(--yes-gold-bright); letter-spacing: 0.2em;
+    text-transform: uppercase; margin: 0 0 var(--space-3);
+  }
+  footer ul { list-style: none; margin: 0; padding: 0; font-family: var(--font-serif); font-size: 0.9rem; }
+  footer li { margin-bottom: 6px; }
+  footer .pillar-strip {
+    margin-top: var(--space-7); padding-top: var(--space-5);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: var(--space-6); flex-wrap: wrap;
+  }
+  footer .pillar-strip .pills {
+    display: flex; gap: var(--space-5);
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  }
+  footer .pillar-strip .pills span { position: relative; padding-left: 16px; }
+  footer .pillar-strip .pills span::before {
+    content: "✦"; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%); font-size: 10px;
+    color: var(--yes-gold-bright);
+  }
+  footer .pillar-strip .copy {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.05em; color: rgba(255,255,255,0.55);
+  }
+
+  /* TWEAKS */
+  .tweaks-panel {
+    position: fixed; bottom: 20px; left: 20px; z-index: 100;
+    background: var(--yes-white);
+    border: 1px solid var(--yes-stone);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-4);
+    width: 280px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    display: none;
+    font-family: var(--font-body);
+  }
+  .tweaks-panel.on { display: block; }
+  .tweaks-panel.collapsed { width: auto; padding: 10px 14px; overflow: hidden; max-height: none; }
+  .tweaks-panel.collapsed .tgroup, .tweaks-panel.collapsed h6::after { display: none; }
+  .tweaks-panel.collapsed h6 { margin: 0; }
+  .tweaks-toggle {
+    background: transparent; border: none; cursor: pointer;
+    font-family: var(--font-mono); font-size: 14px; line-height: 1;
+    color: var(--yes-graphite); padding: 2px 6px;
+    margin-left: 8px;
+  }
+  .tweaks-toggle:hover { background: var(--yes-ivory); color: var(--yes-navy-deep); }
+  .tweaks-panel h6 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1rem; margin: 0 0 var(--space-3);
+    letter-spacing: -0.01em; color: var(--yes-navy-deep);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .tweaks-panel h6::after {
+    content: "TWEAKS"; font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 0.15em;
+    color: var(--yes-crimson); font-weight: 500;
+  }
+  .tweaks-panel .tgroup { margin-bottom: var(--space-4); }
+  .tweaks-panel .tgroup:last-child { margin-bottom: 0; }
+  .tweaks-panel label {
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yes-graphite);
+    display: block; margin-bottom: var(--space-2);
+  }
+  .tweaks-panel .seg {
+    display: flex; background: var(--yes-ivory);
+    padding: 2px; gap: 2px;
+  }
+  .tweaks-panel .seg.wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .tweaks-panel .seg button {
+    flex: 1; border: none; background: transparent;
+    font-family: var(--font-athletic); font-weight: 500;
+    font-size: 0.72rem; padding: 7px 8px;
+    cursor: pointer; color: var(--yes-graphite);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    transition: all 150ms;
+  }
+  .tweaks-panel .seg button.active {
+    background: var(--yes-white);
+    color: var(--yes-navy-deep);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Dark theme */
+  body.theme-dark { background: var(--yes-charcoal); color: var(--yes-white); }
+  body.theme-dark .topbar {
+    background: rgba(22,19,14,0.88);
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  body.theme-dark .topbar .brand { color: white; }
+  body.theme-dark .topbar nav { color: rgba(255,255,255,0.6); }
+  body.theme-dark .topbar nav a:hover { color: var(--yes-gold-bright); }
+  body.theme-dark .section-head h2,
+  body.theme-dark .mission-statement,
+  body.theme-dark .specimen-display,
+  body.theme-dark .specimen-serif,
+  body.theme-dark .scale-table .sample,
+  body.theme-dark .say-card blockquote,
+  body.theme-dark .app-card .caption,
+  body.theme-dark .voice-card h4,
+  body.theme-dark .pillar h4,
+  body.theme-dark .promise .big,
+  body.theme-dark .gradient-card .name,
+  body.theme-dark .lockup-card .caption,
+  body.theme-dark .lockup-horizontal,
+  body.theme-dark .lockup-stacked,
+  body.theme-dark .swatch-label .title,
+  body.theme-dark .type-meta .role { color: white; }
+  body.theme-dark .section-head { border-bottom-color: rgba(255,255,255,0.1); }
+  body.theme-dark .mission,
+  body.theme-dark .logo-section,
+  body.theme-dark .color-section,
+  body.theme-dark .type-section,
+  body.theme-dark .voice-section,
+  body.theme-dark .imagery-section,
+  body.theme-dark .applications-section { background: var(--yes-charcoal); }
+  body.theme-dark .pillar, body.theme-dark .promise, body.theme-dark .lockup-card,
+  body.theme-dark .voice-card, body.theme-dark .say-card, body.theme-dark .app-card,
+  body.theme-dark .dont, body.theme-dark .gradient-card, body.theme-dark .verse-callout {
+    background: #22201C; border-color: rgba(255,255,255,0.08);
+  }
+  body.theme-dark .swatch.light { border-color: rgba(255,255,255,0.15); }
+  body.theme-dark .type-specimen { border-top-color: rgba(255,255,255,0.08); }
+  body.theme-dark .scale-table td { border-top-color: rgba(255,255,255,0.08); }
+  body.theme-dark .tile-c { background: #22201C; color: white; border-color: rgba(255,255,255,0.1); }
+  body.theme-dark .app-cert .canvas { background: #22201C; color: white; border-color: rgba(255,255,255,0.08); }
+  body.theme-dark .app-cert .cert h6 { color: white; }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .mission-grid, .motion-grid, .say-grid { grid-template-columns: 1fr; }
+    .logo-variants, .voice-grid, .donts { grid-template-columns: repeat(2, 1fr); }
+    .lockup-grid, .gradients, .imagery-rules { grid-template-columns: 1fr; }
+    .type-specimen { grid-template-columns: 1fr; gap: var(--space-4); }
+    .swatch-row, .swatch-row.neutrals { grid-template-columns: 1fr 1fr; }
+    .swatch-label { grid-column: 1 / -1; }
+    .imagery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .img-tile.hero { grid-column: span 2; grid-row: auto; }
+    .app-grid { grid-template-columns: 1fr; }
+    .app-web { grid-column: auto; grid-row: auto; min-height: 500px; }
+    .logo-primary-card .showcase { flex-direction: column; text-align: center; gap: var(--space-4); }
+    .logo-primary-card .showcase .words { text-align: center; }
+    footer .fgrid { grid-template-columns: 1fr 1fr; }
+    .topbar nav { display: none; }
+    .tweaks-panel { width: calc(100vw - 40px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG CREST DEFINITIONS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- The YES crest: navy shield, gold border, torch + star, red YES, laurel wreath, gold banner -->
+    <!-- Simplified mono crest for small sizes -->
+    <!-- Pillar icons -->
+    <symbol id="icon-faith" viewBox="0 0 32 32">
+      <!-- cross -->
+      <path d="M16 4v24M8 12h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-learn" viewBox="0 0 32 32">
+      <!-- open book -->
+      <path d="M4 8 l12-2 12 2 v18 l-12-2 -12 2 z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+      <path d="M16 6v20" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+    <symbol id="icon-lead" viewBox="0 0 32 32">
+      <!-- torch -->
+      <path d="M16 4 Q 12 9 13 14 Q 15 11 16 13 Q 17 10 19 14 Q 20 9 16 4 Z" fill="currentColor"/>
+      <rect x="14" y="14" width="4" height="10" fill="currentColor"/>
+      <rect x="12" y="24" width="8" height="2" fill="currentColor"/>
+      <rect x="10" y="27" width="12" height="1.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-serve" viewBox="0 0 32 32">
+      <!-- handshake -->
+      <path d="M4 14 L12 10 L16 13 L20 13 L24 10 L28 14 L26 17 L20 17 L16 15 L12 17 L6 17 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============= TOP BAR ============= -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+      <div class="txt">
+        <span class="wm">Youth Empowerment School</span>
+        <span class="sub">Pre-K through 12th grade · Tuition-free</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#mission">Mission</a>
+      <a href="#logo">Logo</a>
+      <a href="#color">Color</a>
+      <a href="#type">Type</a>
+      <a href="#voice">Voice</a>
+      <a href="#imagery">Imagery</a>
+      <a href="#motion">Motion</a>
+      <a href="#applications">Applications</a>
+    </nav>
+    <div class="version">BRAND KIT · V1.0 · APR 2026</div>
+  </div>
+</div>
+
+<!-- ============= HERO ============= -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Brand Kit · Version 1.0 · April 2026</div>
+      <h1>
+        <span class="say">Say "YES"</span>
+        Youth Empowerment<br>
+        <em>School.</em>
+      </h1>
+      <p class="lede">The official identity system for Youth Empowerment School — a tuition-free private Christian school serving students from daycare through 12th grade. Rooted in faith. Built for excellence. Designed to transform communities one student at a time.</p>
+      <div class="hero-pillars">
+        <div>Faith</div>
+        <div>Learning</div>
+        <div>Character</div>
+        <div>Impact</div>
+      </div>
+    </div>
+    <div class="hero-mark">
+      <div class="hero-crest-frame">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+      </div>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span>YES · BRAND GUIDELINES</span>
+    <span>FAITH · LEARNING · CHARACTER · IMPACT</span>
+    <span>YOUTHEMPOWERMENTSCHOOL.LIVE</span>
+  </div>
+</section>
+
+<!-- ============= MISSION ============= -->
+<section class="mission" id="mission">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">01 / Mission</span>
+      <h2>Why we exist.</h2>
+      <span class="tagline">The foundation.</span>
+    </div>
+
+    <div class="mission-grid">
+      <div>
+        <div class="eyebrow" style="margin-bottom: var(--space-4)">Our mission</div>
+        <p class="mission-statement">
+          We equip young people with a Christ-centered education — empowering them to <em>lead</em> with integrity, <em>learn</em> with curiosity, and transform their communities for generations to come.
+        </p>
+        <div class="verse-callout">
+          "Train up a child in the way he should go; even when he is old he will not depart from it."
+          <cite>Proverbs 22:6</cite>
+        </div>
+        <div class="promises">
+          <div class="promise">
+            <div class="big">Tuition-Free</div>
+            <p>Excellence without barriers. Every family can say yes.</p>
+          </div>
+          <div class="promise">
+            <div class="big">Pre-K → 12</div>
+            <p>One community, from first steps to graduation day.</p>
+          </div>
+          <div class="promise">
+            <div class="big">Christ-Centered</div>
+            <p>Faith woven through every classroom and every relationship.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow" style="margin-bottom: var(--space-4)">Brand pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <svg class="icon" viewBox="0 0 32 32"><use href="#icon-faith"/></svg>
+            <h4>Faith</h4>
+            <p>Releasing the power, restoring the paths, renewing the hearts.</p>
+          </div>
+          <div class="pillar">
+            <svg class="icon" viewBox="0 0 32 32"><use href="#icon-learn"/></svg>
+            <h4>Learning</h4>
+            <p>Academic excellence that thinks beyond the textbook.</p>
+          </div>
+          <div class="pillar">
+            <svg class="icon" viewBox="0 0 32 32"><use href="#icon-lead"/></svg>
+            <h4>Character</h4>
+            <p>Formed in truth — the kind that lasts a lifetime.</p>
+          </div>
+          <div class="pillar">
+            <svg class="icon" viewBox="0 0 32 32"><use href="#icon-serve"/></svg>
+            <h4>Impact</h4>
+            <p>Making a difference beyond the classroom, for the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= LOGO ============= -->
+<section class="logo-section" id="logo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">02 / Logo</span>
+      <h2>The crest, the wordmark, the rules.</h2>
+      <span class="tagline">Identity.</span>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom: var(--space-3)">Primary crest</div>
+    <div class="logo-primary-card">
+      <div class="showcase">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+        <div class="words">
+          Youth<br>Empowerment<br>School<small>Faith · Learning · Character · Impact</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-7) 0 var(--space-3)">On backgrounds</div>
+    <div class="logo-variants">
+      <div class="logo-tile tile-a">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+        <span class="label">01 · Navy</span>
+      </div>
+      <div class="logo-tile tile-b">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+        <span class="label">02 · Crimson</span>
+      </div>
+      <div class="logo-tile tile-c">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+        <span class="label">03 · Ivory</span>
+      </div>
+      <div class="logo-tile tile-d">
+        <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+        <span class="label" style="color: rgba(11,28,61,0.7)">04 · Gold · Mono</span>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-7) 0 var(--space-3)">Lockups</div>
+    <div class="lockup-grid">
+      <div class="lockup-card">
+        <span class="kind">01 · Horizontal</span>
+        <div class="stage">
+          <div class="lockup-horizontal">
+            <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+            <div class="wm">
+              Youth Empowerment School
+              <span class="sub">Faith · Learning · Character · Impact</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="caption">Horizontal Lockup</div>
+          <div class="sub">Primary — web header, letterhead, signage.</div>
+        </div>
+      </div>
+      <div class="lockup-card">
+        <span class="kind">02 · Stacked</span>
+        <div class="stage">
+          <div class="lockup-stacked">
+            <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+            <div class="wm">Youth Empowerment School</div>
+            <div class="cap">Est. 2024</div>
+          </div>
+        </div>
+        <div>
+          <div class="caption">Stacked Lockup</div>
+          <div class="sub">Posters, certificates, formal documents.</div>
+        </div>
+      </div>
+      <div class="lockup-card">
+        <span class="kind">03 · Athletic</span>
+        <div class="stage">
+          <div class="lockup-mono">
+            <div class="athletic">YES</div>
+            <div class="cap">Est. 2024 · Pre-K–12</div>
+          </div>
+        </div>
+        <div>
+          <div class="caption">Athletic Mark</div>
+          <div class="sub">Varsity apparel, banners, pep rallies.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-7) 0 var(--space-3)">Don'ts</div>
+    <div class="donts">
+      <div class="dont">
+        <div class="example">
+          <span class="tag">NO</span>
+          <img class="crest" src="assets/yes-logo-official.png" alt="" style="transform: rotate(14deg)">
+        </div>
+        <p>Don't rotate, tilt, or skew the crest.</p>
+      </div>
+      <div class="dont">
+        <div class="example" style="background: #55734A">
+          <span class="tag">NO</span>
+          <img class="crest" src="assets/yes-logo-official.png" alt="" style="filter: hue-rotate(120deg) saturate(1.5)">
+        </div>
+        <p>Don't recolor outside the approved palette.</p>
+      </div>
+      <div class="dont">
+        <div class="example" style="background: #A8A49B">
+          <span class="tag">NO</span>
+          <img class="crest" src="assets/yes-logo-official.png" alt="" style="opacity: 0.35">
+        </div>
+        <p>Don't use on low-contrast backgrounds.</p>
+      </div>
+      <div class="dont">
+        <div class="example">
+          <span class="tag">NO</span>
+          <img class="crest" src="assets/yes-logo-official.png" alt="" style="transform: scaleX(1.6)">
+        </div>
+        <p>Don't stretch, squash, or distort proportions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= COLOR ============= -->
+<section class="color-section" id="color">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">03 / Color</span>
+      <h2>Crimson, navy, gold. The crest colors.</h2>
+      <span class="tagline">Palette.</span>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom: var(--space-4)">Primary — Crimson</div>
+    <div class="swatch-row">
+      <div class="swatch-label">
+        <div class="title">Crimson</div>
+        <div class="meta">PRIMARY · 45% · CTAs, identity, urgency moments</div>
+      </div>
+      <div class="swatch dark" style="background: #6B1219">
+        <span class="chip">900</span>
+        <div class="name">Deep Crimson<small>RGB 107 · 18 · 25</small></div>
+        <div class="hex">#6B1219</div>
+      </div>
+      <div class="swatch dark" style="background: #C8202E">
+        <span class="chip">PRIMARY</span>
+        <div class="name">Crimson<small>RGB 200 · 32 · 46</small></div>
+        <div class="hex">#C8202E</div>
+      </div>
+      <div class="swatch dark" style="background: #E63946">
+        <span class="chip">500</span>
+        <div class="name">Bright Crimson<small>RGB 230 · 57 · 70</small></div>
+        <div class="hex">#E63946</div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-6) 0 var(--space-4)">Anchor — Navy</div>
+    <div class="swatch-row">
+      <div class="swatch-label">
+        <div class="title">Navy</div>
+        <div class="meta">ANCHOR · 25% · Headlines, body, trust &amp; authority</div>
+      </div>
+      <div class="swatch dark" style="background: #0B1C3D">
+        <span class="chip">900</span>
+        <div class="name">Deep Navy<small>RGB 11 · 28 · 61</small></div>
+        <div class="hex">#0B1C3D</div>
+      </div>
+      <div class="swatch dark" style="background: #152B54">
+        <span class="chip">PRIMARY</span>
+        <div class="name">Navy<small>RGB 21 · 43 · 84</small></div>
+        <div class="hex">#152B54</div>
+      </div>
+      <div class="swatch dark" style="background: #20407A">
+        <span class="chip">700</span>
+        <div class="name">Navy 700<small>Hover / secondary</small></div>
+        <div class="hex">#20407A</div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-6) 0 var(--space-4)">Honor — Gold</div>
+    <div class="swatch-row">
+      <div class="swatch-label">
+        <div class="title">Gold</div>
+        <div class="meta">HONOR · 15% · Accents, certificates, crest, celebration</div>
+      </div>
+      <div class="swatch light" style="background: #C79226">
+        <span class="chip">DEEP</span>
+        <div class="name">Deep Gold<small>RGB 199 · 146 · 38</small></div>
+        <div class="hex">#C79226</div>
+      </div>
+      <div class="swatch light" style="background: #E8B33E">
+        <span class="chip">PRIMARY</span>
+        <div class="name">Gold<small>RGB 232 · 179 · 62</small></div>
+        <div class="hex">#E8B33E</div>
+      </div>
+      <div class="swatch light" style="background: #F5C94A">
+        <span class="chip">BRIGHT</span>
+        <div class="name">Bright Gold<small>RGB 245 · 201 · 74</small></div>
+        <div class="hex">#F5C94A</div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-6) 0 var(--space-4)">Neutrals</div>
+    <div class="swatch-row neutrals">
+      <div class="swatch-label">
+        <div class="title">Neutrals</div>
+        <div class="meta">15% · Paper, dividers, body text</div>
+      </div>
+      <div class="swatch light" style="background: #FFFFFF">
+        <div class="name">White<small>Reversed type</small></div>
+        <div class="hex">#FFFFFF</div>
+      </div>
+      <div class="swatch light" style="background: #FBF8F1">
+        <div class="name">Ivory<small>Warm paper</small></div>
+        <div class="hex">#FBF8F1</div>
+      </div>
+      <div class="swatch light" style="background: #E8E2D4">
+        <div class="name">Stone<small>Borders</small></div>
+        <div class="hex">#E8E2D4</div>
+      </div>
+      <div class="swatch dark" style="background: #2D2A25">
+        <div class="name">Graphite<small>Body copy</small></div>
+        <div class="hex">#2D2A25</div>
+      </div>
+      <div class="swatch dark" style="background: #16130E">
+        <div class="name">Charcoal<small>Deep dark / footer</small></div>
+        <div class="hex">#16130E</div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-7) 0 var(--space-3)">The 45/25/15/15 rule</div>
+    <div class="ratio-bar">
+      <div style="flex: 45; background: var(--gradient-crimson); color: white">45 · Crimson</div>
+      <div style="flex: 25; background: var(--yes-navy-deep); color: white">25 · Navy</div>
+      <div style="flex: 15; background: var(--gradient-sunrise); color: var(--yes-navy-deep)">15 · Gold</div>
+      <div style="flex: 15; background: var(--yes-ivory); color: var(--yes-navy-deep)">15 · Ivory</div>
+    </div>
+
+    <div class="eyebrow" style="margin: var(--space-7) 0 var(--space-3)">Gradients</div>
+    <div class="gradients">
+      <div class="gradient-card">
+        <div class="bar" style="background: var(--gradient-crimson)"></div>
+        <div class="info">
+          <div class="name">Crimson Rise</div>
+          <div class="stops">#6B1219 → #C8202E → #E63946</div>
+          <p class="use">Hero backgrounds, enrollment CTAs, flagship moments.</p>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="bar" style="background: var(--gradient-sunrise)"></div>
+        <div class="info">
+          <div class="name">Honor Sunrise</div>
+          <div class="stops">#C79226 → #F5C94A</div>
+          <p class="use">Button glows, certificates, celebration sweeps.</p>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="bar" style="background: var(--gradient-chapel)"></div>
+        <div class="info">
+          <div class="name">Chapel</div>
+          <div class="stops">#0B1C3D → #152B54 → #C8202E</div>
+          <p class="use">Event posters, evening programs, graduation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= TYPE ============= -->
+<section class="type-section" id="type">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">04 / Type</span>
+      <h2>Editorial, academic, personal.</h2>
+      <span class="tagline">Letterforms.</span>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Display &amp; Headlines</h4>
+        <div class="family">Playfair Display · 700 / 800 · Google Fonts</div>
+        <p class="note">A classic editorial serif with high contrast — dignity and warmth, the voice of a school that's been here and is here to stay.</p>
+      </div>
+      <div>
+        <p class="specimen-display">Say "YES" to<br><em>something greater.</em></p>
+        <div class="glyph-strip">ABCDEFGHIJKLMN · abcdefghijklmn · 0123456789 · !?&amp;·@#</div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Editorial Serif</h4>
+        <div class="family">Cormorant Garamond · 500 / Italic · Google Fonts</div>
+        <p class="note">Secondary serif for pull-quotes, scripture, program descriptions. Pairs with Playfair without competing.</p>
+      </div>
+      <div>
+        <p class="specimen-serif">"Train up a child in the way he should go; even when he is old he will not depart from it."</p>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Athletic / Uppercase</h4>
+        <div class="family">Oswald · 600 / 700 · Google Fonts</div>
+        <p class="note">For varsity apparel, banners, section markers — condensed, confident, high-impact.</p>
+      </div>
+      <div>
+        <p class="specimen-athletic">FAITH · LEARNING · CHARACTER · IMPACT</p>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Tagline &amp; Flourish</h4>
+        <div class="family">Caveat · 700 · Google Fonts</div>
+        <p class="note">Handwritten, personal, warm — the voice of a teacher, a mentor, a parent. Use only as flourish, never for long copy.</p>
+      </div>
+      <div>
+        <p class="specimen-script">Say "YES" to your future.</p>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Body &amp; UI</h4>
+        <div class="family">Inter · 400 / 500 / 600 · Google Fonts</div>
+        <p class="note">Neutral pairing for long-form copy, enrollment forms, parent letters.</p>
+      </div>
+      <div>
+        <p class="specimen-body">Youth Empowerment School (YES) is a tuition-free, private Christian educational institution designed to empower young people from Pre-K through 12th grade. Our programs equip students not only with a rigorous academic education, but with the character they'll need to transform the communities they call home.</p>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <h4 class="role">Monospace</h4>
+        <div class="family">JetBrains Mono · 400 / 500 · Google Fonts</div>
+        <p class="note">Dates, data, enrollment numbers, technical labels.</p>
+      </div>
+      <div>
+<pre class="specimen-mono">--color-primary: #C8202E;
+--font-display: "Playfair Display";
+--ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+&gt; enrollment.open({ year: 2026, grades: "Pre-K–12" })</pre>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-top: var(--space-7)">Type scale · desktop</div>
+    <table class="scale-table">
+      <tbody>
+        <tr><td class="token">display-xl</td><td class="sample" style="font-family: var(--font-display); font-weight: 700; font-size: 4.5rem; line-height: 1">Say "YES".</td><td class="specs">72 / 80 · 700</td></tr>
+        <tr><td class="token">display-lg</td><td class="sample" style="font-family: var(--font-display); font-weight: 700; font-size: 3.5rem; line-height: 1.1">Built for young leaders.</td><td class="specs">56 / 64 · 700</td></tr>
+        <tr><td class="token">h1</td><td class="sample" style="font-family: var(--font-display); font-weight: 700; font-size: 2.75rem; line-height: 1.2">Academic excellence, character formation.</td><td class="specs">44 / 52 · 700</td></tr>
+        <tr><td class="token">h2</td><td class="sample" style="font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1.25">Learning through service.</td><td class="specs">32 / 40 · 700</td></tr>
+        <tr><td class="token">h3</td><td class="sample" style="font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; line-height: 1.3">A classroom that becomes a family.</td><td class="specs">24 / 32 · 600</td></tr>
+        <tr><td class="token">body-lg</td><td class="sample" style="font-family: Inter; font-size: 1.125rem; font-weight: 400; line-height: 1.6">A lead paragraph invites the reader into the story.</td><td class="specs">18 / 28 · 400</td></tr>
+        <tr><td class="token">body</td><td class="sample" style="font-family: Inter; font-size: 1rem; font-weight: 400; line-height: 1.55">Default paragraph text for interface and long-form content.</td><td class="specs">16 / 26 · 400</td></tr>
+        <tr><td class="token">label</td><td class="sample" style="font-family: Oswald; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase">Eyebrow · Button Label</td><td class="specs">12 / 16 · 600</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============= VOICE ============= -->
+<section class="voice-section" id="voice">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">05 / Voice &amp; Tone</span>
+      <h2>How we sound in every room.</h2>
+      <span class="tagline">Voice.</span>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h4>Warm, not casual</h4>
+        <p>We speak like a trusted teacher — welcoming, caring, but still held to a high standard.</p>
+      </div>
+      <div class="voice-card">
+        <h4>Faith-rooted, never preachy</h4>
+        <p>Our values are evident in how we act. We don't need to shout our faith; we live it.</p>
+      </div>
+      <div class="voice-card">
+        <h4>Direct, not dry</h4>
+        <p>Short sentences. Clear calls. Respect the parent's time — and the student's attention.</p>
+      </div>
+      <div class="voice-card">
+        <h4>For the family</h4>
+        <p>Parents are partners. Students are protagonists. We write to both, and we never talk down.</p>
+      </div>
+    </div>
+
+    <div class="say-grid">
+      <div class="say-card do">
+        <span class="mark">Do say</span>
+        <blockquote>Say "YES" to a school that sees your child — and helps them see further.</blockquote>
+      </div>
+      <div class="say-card dont">
+        <span class="mark">Don't say</span>
+        <blockquote>YES leverages Christian principles and rigorous pedagogy to deliver holistic educational outcomes.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= IMAGERY ============= -->
+<section class="imagery-section" id="imagery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">06 / Imagery</span>
+      <h2>Students first. Faith in every frame.</h2>
+      <span class="tagline">Light.</span>
+    </div>
+
+    <p style="font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--yes-graphite); max-width: 60ch; margin: 0 0 var(--space-5); line-height: 1.55;">
+      Placeholder tiles below — drop real photography here. The captions describe the kind of shot needed in each slot.
+    </p>
+
+    <div class="imagery-grid">
+      <div class="img-tile hero img-a">
+        <span class="ph-label">[ placeholder — hero ]</span>
+        <div class="caption">Classroom in Motion</div>
+        <div class="hint">Students engaged — mid-thought, mid-question. Natural light.</div>
+      </div>
+      <div class="img-tile img-c">
+        <span class="ph-label">[ placeholder ]</span>
+        <div class="caption">Ready to Learn</div>
+        <div class="hint">Uniforms, bright eyes, group portraits.</div>
+      </div>
+      <div class="img-tile img-b">
+        <span class="ph-label">[ placeholder ]</span>
+        <div class="caption">Teacher Moments</div>
+        <div class="hint">1:1 guidance, listening, patience.</div>
+      </div>
+      <div class="img-tile img-d">
+        <span class="ph-label" style="background: rgba(11,28,61,0.35)">[ placeholder ]</span>
+        <div class="caption" style="color: var(--yes-navy-deep)">Celebration</div>
+        <div class="hint" style="color: rgba(11,28,61,0.7)">Graduations, honor ceremonies, certificate moments.</div>
+      </div>
+      <div class="img-tile img-e">
+        <span class="ph-label">[ placeholder ]</span>
+        <div class="caption">Community &amp; Chapel</div>
+        <div class="hint">Families, gatherings, worship, service.</div>
+      </div>
+    </div>
+
+    <div class="imagery-rules">
+      <div class="rule">
+        <strong>Subject</strong>
+        Students first — faces, hands, action. Candid over posed. Show the work, not just the smile.
+      </div>
+      <div class="rule">
+        <strong>Treatment</strong>
+        Warm shadows, honest highlights. Natural light wherever possible. Never over-filter or over-saturate.
+      </div>
+      <div class="rule">
+        <strong>Never</strong>
+        Stock-photo clichés, white-studio portraits, or imagery that flattens the uniqueness of each student.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= MOTION ============= -->
+<section class="motion-section" id="motion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">07 / Motion</span>
+      <h2>Measured. Intentional. Never decorative.</h2>
+      <span class="tagline">Motion.</span>
+    </div>
+
+    <div class="motion-grid">
+      <div class="easing-card">
+        <h4>Signature easing — outExpo</h4>
+        <div class="easing-viz">
+          <div class="dot"></div>
+        </div>
+        <div class="easing-code">cubic-bezier(0.22, 1, 0.36, 1)</div>
+        <div class="motion-spec">
+          <div class="row"><span class="tok">dur-fast</span><span class="val">150ms</span></div>
+          <div class="row"><span class="tok">dur-base</span><span class="val">200ms</span></div>
+          <div class="row"><span class="tok">dur-slow</span><span class="val">400ms</span></div>
+          <div class="row"><span class="tok">dur-story</span><span class="val">600ms</span></div>
+          <div class="row"><span class="tok">dur-hero</span><span class="val">800ms</span></div>
+          <div class="row"><span class="tok">ease-in-out</span><span class="val">.65, 0, .35, 1</span></div>
+        </div>
+      </div>
+
+      <div class="sweep-demo">
+        <div class="sweep"></div>
+        <h4>The Honor Sweep</h4>
+        <p>Our signature motion — a crimson-to-gold gradient wipe rising from bottom-left to top-right. Use once per page, maximum. Never bounce or spin for decoration alone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= APPLICATIONS ============= -->
+<section class="applications-section" id="applications">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">08 / Applications</span>
+      <h2>The brand, at work.</h2>
+      <span class="tagline">In the wild.</span>
+    </div>
+
+    <div class="app-grid">
+      <!-- Web -->
+      <div class="app-card app-web">
+        <div class="label">Website Hero</div>
+        <div class="canvas">
+          <div class="mini-nav">
+            <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+            <span>About</span><span>Programs</span><span>Apply</span><span>Donate</span>
+          </div>
+          <div class="mini-hero">
+            <div class="script-line">Say "YES" to</div>
+            <h5>Youth Empowerment School.</h5>
+            <p class="sub-line">Tuition-free private Christian education for young people — daycare through 12th grade.</p>
+            <div class="btn">Reserve My Spot →</div>
+          </div>
+        </div>
+        <div class="caption">Web · Hero <small>Crimson gradient, crest top-left, Playfair + Caveat accent.</small></div>
+      </div>
+
+      <!-- Business card -->
+      <div class="app-card app-card-biz">
+        <div class="label">Business Card</div>
+        <div class="canvas">
+          <div class="bc-pair">
+            <span class="side-label">Front</span>
+            <div class="bc front">
+              <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+            </div>
+            <span class="side-label">Back</span>
+            <div class="bc back">
+              <div class="info">
+                <div>
+                  <div class="name">Amara Johnson</div>
+                  <div class="role">Head of School</div>
+                </div>
+                <div class="rule"></div>
+                <div class="contact">
+                  <span>amara@youthempowermentschool.live</span>
+                  <span>+1 (234) 709-0022</span>
+                  <span>youthempowermentschool.live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Print · Business card <small>3.5" × 2". Crest front, contact block back.</small></div>
+      </div>
+
+      <!-- Social -->
+      <div class="app-card app-social">
+        <div class="label">Social Avatar</div>
+        <div class="canvas">
+          <div class="avatar">
+            <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+          </div>
+        </div>
+        <div class="caption">Digital · Avatar <small>Crest on Navy. Works from 24 px up.</small></div>
+      </div>
+
+      <!-- Merch -->
+      <div class="app-card app-merch">
+        <div class="label">Varsity Banner</div>
+        <div class="canvas">
+          <div class="jacket">
+            <div class="yes-word">YES</div>
+            <div class="rule">Faith · Learning · Character</div>
+          </div>
+        </div>
+        <div class="caption">Merch · Varsity <small>Navy base, crimson block type with gold offset.</small></div>
+      </div>
+
+      <!-- Certificate -->
+      <div class="app-cert">
+        <div class="label">Certificate</div>
+        <div class="canvas">
+          <div class="cert">
+            <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+            <h6>Certificate of Honor</h6>
+            <div class="line"></div>
+            <p class="fine">Well done, good &amp; faithful.</p>
+          </div>
+        </div>
+        <div class="caption">Print · Certificate <small>Crest centered, Caveat signature line.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="flogo">
+          <img class="crest" src="assets/yes-logo-official.png" alt="YES — Youth Empowerment School">
+          <div class="txt">
+            Youth Empowerment School
+            <small>Brand Kit · v1.0 · Apr 2026</small>
+          </div>
+        </div>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; line-height: 1.6; max-width: 44ch; margin: 0;">
+          The official brand system for Youth Empowerment School. Annual review cadence, Q1. All external materials require brand-owner sign-off before publication.
+        </p>
+      </div>
+      <div>
+        <h5>Assets</h5>
+        <ul>
+          <li>/brand/crest</li>
+          <li>/brand/tokens</li>
+          <li>/brand/templates</li>
+          <li>Figma library</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tokens</h5>
+        <ul>
+          <li>colors.css</li>
+          <li>typography.css</li>
+          <li>spacing.css</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>brand@youthempowermentschool.live</li>
+          <li>Request approval</li>
+          <li>Report a misuse</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pillar-strip">
+      <div class="pills">
+        <span>Faith</span>
+        <span>Learning</span>
+        <span>Character</span>
+        <span>Impact</span>
+      </div>
+      <div class="copy">© 2026 Youth Empowerment School · All rights reserved</div>
+    </div>
+  </div>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div class="tweaks-panel" id="tweaks">
+  <h6>Brand Kit Controls<button class="tweaks-toggle" id="tweaks-toggle" title="Collapse">–</button></h6>
+  <div class="tgroup">
+    <label>Theme</label>
+    <div class="seg" data-group="theme">
+      <button data-val="light" class="active">Light</button>
+      <button data-val="dark">Dark</button>
+    </div>
+  </div>
+  <div class="tgroup">
+    <label>Primary Accent</label>
+    <div class="seg" data-group="accent">
+      <button data-val="crimson" class="active">Crimson</button>
+      <button data-val="navy">Navy</button>
+      <button data-val="gold">Gold</button>
+    </div>
+  </div>
+  <div class="tgroup">
+    <label>Script Font</label>
+    <div class="seg wrap" data-group="script">
+      <button data-val="caveat" class="active">Caveat</button>
+      <button data-val="kaushan">Kaushan</button>
+      <button data-val="dancing">Dancing</button>
+      <button data-val="satisfy">Satisfy</button>
+    </div>
+  </div>
+  <div class="tgroup">
+    <label>Display Serif</label>
+    <div class="seg" data-group="display">
+      <button data-val="playfair" class="active">Playfair</button>
+      <button data-val="cormorant">Cormorant</button>
+    </div>
+  </div>
+  <div class="tgroup">
+    <label>Grid Overlay</label>
+    <div class="seg" data-group="grid">
+      <button data-val="off" class="active">Off</button>
+      <button data-val="on">On</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "accent": "crimson",
+  "script": "caveat",
+  "display": "playfair",
+  "grid": "off"
+}/*EDITMODE-END*/;
+
+const state = { ...TWEAK_DEFAULTS };
+
+function applyTweaks() {
+  document.body.classList.toggle('theme-dark', state.theme === 'dark');
+
+  const scriptStacks = {
+    caveat:   '"Caveat", cursive',
+    kaushan:  '"Kaushan Script", cursive',
+    dancing:  '"Dancing Script", cursive',
+    satisfy:  '"Satisfy", cursive',
+  };
+  document.documentElement.style.setProperty('--font-script', scriptStacks[state.script] || scriptStacks.caveat);
+
+  const displayStacks = {
+    playfair:  '"Playfair Display", Georgia, serif',
+    cormorant: '"Cormorant Garamond", Georgia, serif',
+  };
+  document.documentElement.style.setProperty('--font-display', displayStacks[state.display] || displayStacks.playfair);
+
+  const accents = {
+    crimson: { main: '#C8202E', deep: '#8A1A24', bright: '#E63946' },
+    navy:    { main: '#152B54', deep: '#0B1C3D', bright: '#20407A' },
+    gold:    { main: '#C79226', deep: '#8B6518', bright: '#E8B33E' },
+  };
+  const a = accents[state.accent];
+  document.documentElement.style.setProperty('--yes-crimson', a.main);
+  document.documentElement.style.setProperty('--yes-crimson-deep', a.deep);
+  document.documentElement.style.setProperty('--yes-crimson-bright', a.bright);
+
+  let grid = document.getElementById('__grid-overlay');
+  if (state.grid === 'on') {
+    if (!grid) {
+      grid = document.createElement('div');
+      grid.id = '__grid-overlay';
+      grid.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:99;background-image:linear-gradient(to right, rgba(200,32,46,0.2) 1px, transparent 1px);background-size:80px 100%;';
+      document.body.appendChild(grid);
+    }
+  } else if (grid) {
+    grid.remove();
+  }
+
+  document.querySelectorAll('.tweaks-panel .seg').forEach(seg => {
+    const group = seg.dataset.group;
+    seg.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.val === state[group]);
+    });
+  });
+}
+
+document.querySelectorAll('.tweaks-panel .seg').forEach(seg => {
+  seg.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const group = seg.dataset.group;
+    state[group] = btn.dataset.val;
+    applyTweaks();
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [group]: state[group] } }, '*');
+    } catch (e) {}
+  });
+});
+
+const tweaksEl = document.getElementById('tweaks');
+const tweaksToggle = document.getElementById('tweaks-toggle');
+if (tweaksToggle) {
+  tweaksToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    tweaksEl.classList.toggle('collapsed');
+    tweaksToggle.textContent = tweaksEl.classList.contains('collapsed') ? '+' : '–';
+  });
+}
+
+window.addEventListener('message', (e) => {
+  const msg = e.data;
+  if (!msg || typeof msg !== 'object') return;
+  if (msg.type === '__activate_edit_mode') {
+    document.getElementById('tweaks').classList.add('on');
+  } else if (msg.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaks').classList.remove('on');
+  }
+});
+
+try {
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+} catch (e) {}
+
+applyTweaks();
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
