@@ -1170,7 +1170,7 @@ body[data-accent="crimson"] .btn-outline {
 /* ===== Donate ===== */
 .amounts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
   margin: var(--space-5) 0;
 }
