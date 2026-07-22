@@ -96,6 +96,18 @@
 
   /* Left column */
   .event-section { margin-bottom: var(--space-7); }
+  .event-experience {
+    margin: 0 0 var(--space-7);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--yes-stone);
+    background: var(--yes-navy-deep);
+    box-shadow: var(--shadow-sm);
+  }
+  .event-experience[hidden] { display: none; }
+  .event-experience img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .event-experience video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
   .event-section h2 {
     font-family: var(--font-display);
     font-weight: 700;
@@ -258,7 +270,11 @@
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 200ms;
-    display: flex; gap: 12px; align-items: flex-start;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+    min-height: 96px;
   }
   .ticket:hover { border-color: var(--yes-gold-deep); }
   .ticket.active { border-color: var(--yes-gold-deep); background: rgba(199,146,38,0.06); }
@@ -269,10 +285,10 @@
   }
   .ticket.active .radio { border-color: var(--yes-gold-deep); }
   .ticket.active .radio::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--yes-gold-deep); }
-  .ticket .body { flex: 1; }
+  .ticket .body { min-width: 0; }
   .ticket .name { font-weight: 700; color: var(--yes-navy-deep); font-size: 1rem; }
   .ticket .desc { font-size: 0.84rem; color: var(--yes-graphite); margin-top: 2px; }
-  .ticket .price { font-family: var(--font-display); font-weight: 700; color: var(--yes-navy-deep); font-size: 1.15rem; }
+  .ticket .price { font-family: var(--font-display); font-weight: 700; color: var(--yes-navy-deep); font-size: 1.15rem; white-space: nowrap; }
   .register-btn {
     width: 100%;
     margin-top: 14px;
@@ -366,6 +382,8 @@
   <div class="container">
     <div class="event-grid">
       <div class="event-content">
+
+        <figure class="event-experience" hidden></figure>
 
         <div class="event-section">
           <h2>About this event</h2>

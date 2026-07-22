@@ -75,6 +75,13 @@
     if (hero && event.heroImageUrl) {
       hero.innerHTML = `<img src="${escapeHtml(event.heroImageUrl)}" alt="${escapeHtml(event.heroImageAlt || event.title)}">`;
     }
+    const experienceImage = document.querySelector('.event-experience');
+    if (experienceImage && (event.experienceVideoUrl || event.experienceImageUrl)) {
+      experienceImage.innerHTML = event.experienceVideoUrl
+        ? `<video controls playsinline preload="metadata"${event.experienceImageUrl ? ` poster="${escapeHtml(event.experienceImageUrl)}"` : ''}><source src="${escapeHtml(event.experienceVideoUrl)}"${event.experienceVideoMimeType ? ` type="${escapeHtml(event.experienceVideoMimeType)}"` : ''}>Your browser does not support embedded video.</video>`
+        : `<img src="${escapeHtml(event.experienceImageUrl)}" alt="${escapeHtml(event.experienceImageAlt || event.title)}">`;
+      experienceImage.hidden = false;
+    }
     document.querySelector('.event-meta-row').innerHTML = `<div class="item"><div><strong>${start.full}</strong><span>${start.time}${end ? ` – ${end.time}` : ''} ${escapeHtml(event.timezone || '')}</span></div></div><div class="item"><div><strong>${escapeHtml(event.location?.name || 'Location TBA')}</strong><span>${escapeHtml(event.location?.city || '')}</span></div></div>`;
 
     const sections = document.querySelectorAll('.event-section');
@@ -107,7 +114,7 @@
       ticket.type = 'button';
       ticket.className = `ticket${tier === selectedTier ? ' active' : ''}`;
       ticket.disabled = Boolean(tier.soldOut);
-      ticket.innerHTML = `<div class="radio"></div><div class="body"><div class="name">${escapeHtml(tier.label)} <span style="float:right" class="price">${tier.soldOut ? 'Sold out' : money(tier.priceCents)}</span></div><div class="desc">${escapeHtml(tier.description || '')}</div></div>`;
+      ticket.innerHTML = `<div class="radio"></div><div class="body"><div class="name">${escapeHtml(tier.label)}</div><div class="desc">${escapeHtml(tier.description || '')}</div></div><span class="price">${tier.soldOut ? 'Sold out' : money(tier.priceCents)}</span>`;
       ticket.addEventListener('click', () => {
         card.querySelectorAll('.ticket').forEach(item => item.classList.remove('active'));
         ticket.classList.add('active');
