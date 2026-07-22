@@ -1247,6 +1247,12 @@ body[data-accent="crimson"] .btn-outline {
   gap: clamp(28px, 4vw, 56px);
   align-items: start;
 }
+.donate-layout .give-card.checkout-active .amounts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.donate-layout .give-card.checkout-active #stripe-checkout {
+  display: none !important;
+}
 .give-card h2 {
   font-family: var(--font-display);
   font-weight: 800;
