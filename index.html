@@ -70,25 +70,25 @@
       <img class="seal" src="assets/img/yes-logo.png" alt="">
       <h3>Enroll your child</h3>
       <p>Tell us a little about you. We'll send next steps and a personal call from our admissions team.</p>
-      <form data-demo>
+      <form data-ghl-contact data-form-type="admissions">
         <div>
           <label>Parent / Guardian Name</label>
-          <input type="text" required placeholder="Your full name">
+          <input type="text" name="name" required placeholder="Your full name">
         </div>
         <div class="row">
           <div>
             <label>Phone</label>
-            <input type="tel" required placeholder="(210) 555-0123">
+            <input type="tel" name="phone" required placeholder="(210) 555-0123">
           </div>
           <div>
             <label>Email</label>
-            <input type="email" required placeholder="you@example.com">
+            <input type="email" name="email" required placeholder="you@example.com">
           </div>
         </div>
         <div class="row">
           <div>
             <label>School-age children</label>
-            <select required>
+            <select name="children" required>
               <option>1 child</option>
               <option>2 children</option>
               <option>3 children</option>
@@ -97,7 +97,7 @@
           </div>
           <div>
             <label>Starting grade</label>
-            <select required>
+            <select name="grade" required>
               <option>Pre-K</option>
               <option>Kindergarten</option>
               <option>1st – 5th</option>

@@ -101,16 +101,24 @@
     }
   }
 
-  // Apply form (demo)
-  document.querySelectorAll('form[data-demo]').forEach(form => {
-    form.addEventListener('submit', e => {
+  // Admissions and event RSVP forms are saved to the YES GoHighLevel subaccount.
+  document.querySelectorAll('form[data-ghl-contact]').forEach(form => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const btn = form.querySelector('button[type=submit], .submit-btn');
-      if (btn) {
-        const original = btn.innerHTML;
-        btn.innerHTML = '✓ Submitted — we\'ll be in touch';
-        btn.disabled = true;
-        setTimeout(() => { btn.innerHTML = original; btn.disabled = false; form.reset(); }, 2400);
+      const original = btn ? btn.innerHTML : '';
+      if (btn) { btn.innerHTML = 'Saving…'; btn.disabled = true; }
+      try {
+        const values = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, formType: form.dataset.formType }) });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || 'Please try again.');
+        if (btn) btn.innerHTML = '✓ Submitted — we\'ll be in touch';
+        form.reset();
+      } catch (error) {
+        if (btn) btn.innerHTML = 'Could not submit — try again';
+      } finally {
+        setTimeout(() => { if (btn) { btn.innerHTML = original; btn.disabled = false; } }, 3000);
       }
     });
   });
