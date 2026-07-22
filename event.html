@@ -274,7 +274,8 @@
     grid-template-columns: 18px minmax(0, 1fr) auto;
     gap: 12px;
     align-items: start;
-    min-height: 96px;
+    box-sizing: border-box;
+    height: 104px;
   }
   .ticket:hover { border-color: var(--yes-gold-deep); }
   .ticket.active { border-color: var(--yes-gold-deep); background: rgba(199,146,38,0.06); }
@@ -323,6 +324,7 @@
     .schedule-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
     .speakers { grid-template-columns: 1fr; }
     .event-meta-row { gap: 18px; }
+    .ticket { height: 116px; }
   }
 </style>
 </head>
