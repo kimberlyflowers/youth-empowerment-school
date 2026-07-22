@@ -576,6 +576,12 @@ a:hover { color: var(--yes-crimson-deep); }
   aspect-ratio: 4/3;
   background: var(--yes-stone) center/cover no-repeat;
   position: relative;
+  overflow: hidden;
+}
+.program .img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .program .img.placeholder-img {
   background:
@@ -834,6 +840,11 @@ body[data-accent="crimson"] .btn-outline {
   overflow: hidden;
   aspect-ratio: 4/5;
   background: var(--yes-navy-deep);
+}
+.media-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .media-frame .placeholder {
   position: absolute; inset: 0;
@@ -1225,6 +1236,11 @@ body[data-accent="crimson"] .btn-outline {
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--yes-stone);
 }
+.donate-layout {
+  grid-template-columns: minmax(300px, 380px) minmax(680px, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+}
+.donate-layout .give-card { min-width: 0; }
 .give-card h2 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -1248,6 +1264,7 @@ body[data-accent="crimson"] .btn-outline {
 .give-card input:focus { outline: none; border-color: var(--yes-crimson); }
 
 .embedded-checkout {
+  width: 100%;
   margin-top: 20px;
   min-height: 520px;
   border-top: 1px solid var(--yes-stone);
@@ -1326,6 +1343,7 @@ body[data-accent="crimson"] .btn-outline {
 @media (max-width: 1024px) {
   .pillars, .programs, .impact-grid, .team-grid, .amounts { grid-template-columns: repeat(2, 1fr); }
   .hero-grid, .two-col, .two-col-flip, .feature-event { grid-template-columns: 1fr; }
+  .donate-layout { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .nav-toggle { display: block; }
