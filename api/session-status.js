@@ -1,5 +1,3 @@
-const { getStripe } = require("./_lib/stripe");
-
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -11,19 +9,8 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Invalid session" });
   }
 
-  try {
-    const session = await getStripe().checkout.sessions.retrieve(sessionId);
-    const confirmed =
-      session.status === "complete" &&
-      (session.payment_status === "paid" || session.payment_status === "no_payment_required");
-    return res.status(200).json({
-      confirmed,
-      status: session.status,
-      paymentStatus: session.payment_status,
-      customerEmail: session.customer_details?.email || session.customer_email || null,
-      metadata: session.metadata,
-    });
-  } catch {
-    return res.status(404).json({ error: "Session not found" });
-  }
+  const url = new URL("https://outpouringmissions.live/api/yes-checkout");
+  url.searchParams.set("session_id", sessionId);
+  const response = await fetch(url, { headers: { Origin: req.headers.origin || "https://youthempowerment.live" } });
+  return res.status(response.status).json(await response.json());
 };
