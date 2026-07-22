@@ -78,6 +78,7 @@
           clientSecret: payload.clientSecret
         });
         mount.hidden = false;
+        mount.closest('.give-card')?.classList.add('checkout-active');
         embeddedCheckout.mount('#embedded-checkout');
         mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } catch (error) {

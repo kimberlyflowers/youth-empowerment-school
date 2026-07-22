@@ -1241,6 +1241,12 @@ body[data-accent="crimson"] .btn-outline {
   gap: clamp(32px, 5vw, 80px);
 }
 .donate-layout .give-card { min-width: 0; }
+.donate-layout .give-card.checkout-active {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(480px, 1.2fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
 .give-card h2 {
   font-family: var(--font-display);
   font-weight: 800;
@@ -1265,10 +1271,10 @@ body[data-accent="crimson"] .btn-outline {
 
 .embedded-checkout {
   width: 100%;
-  margin-top: 20px;
-  min-height: 520px;
-  border-top: 1px solid var(--yes-stone);
-  padding-top: 16px;
+  margin-top: 0;
+  min-height: 620px;
+  border-left: 1px solid var(--yes-stone);
+  padding-left: clamp(20px, 3vw, 42px);
 }
 .payment-message {
   color: var(--yes-crimson-deep);
@@ -1344,6 +1350,14 @@ body[data-accent="crimson"] .btn-outline {
   .pillars, .programs, .impact-grid, .team-grid, .amounts { grid-template-columns: repeat(2, 1fr); }
   .hero-grid, .two-col, .two-col-flip, .feature-event { grid-template-columns: 1fr; }
   .donate-layout { grid-template-columns: 1fr; }
+  .donate-layout .give-card.checkout-active { grid-template-columns: 1fr; }
+  .embedded-checkout {
+    margin-top: 20px;
+    border-left: 0;
+    border-top: 1px solid var(--yes-stone);
+    padding-left: 0;
+    padding-top: 16px;
+  }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .nav-toggle { display: block; }
