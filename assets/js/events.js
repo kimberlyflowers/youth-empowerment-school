@@ -80,10 +80,22 @@
     const sections = document.querySelectorAll('.event-section');
     if (sections[0]) sections[0].innerHTML = `<h2>About this event</h2>${(event.about || []).map(p => `<p>${escapeHtml(p)}</p>`).join('')}`;
     if (sections[1]) sections[1].innerHTML = `<h2>Schedule</h2><div class="schedule-list">${(event.agenda || []).map(item => `<div class="schedule-row"><span class="when">${escapeHtml(item.time)}</span><span class="what">${escapeHtml(item.title)}${item.detail ? ` · ${escapeHtml(item.detail)}` : ''}</span></div>`).join('')}</div>`;
+    if (sections[2] && event.speakers?.length) sections[2].innerHTML = `<h2>You'll meet</h2><div class="speakers">${event.speakers.map(speaker => `<article class="speaker"><div class="ph">${speaker.headshotUrl ? `<img src="${escapeHtml(speaker.headshotUrl)}" alt="${escapeHtml(speaker.name)}">` : escapeHtml(speaker.name.split(' ').map(part => part[0]).join('').slice(0, 2))}</div><h4>${escapeHtml(speaker.name)}</h4><div class="role">${escapeHtml(speaker.role || '')}</div></article>`).join('')}</div>`;
     if (sections[3]) sections[3].innerHTML = `<h2>Where</h2><div class="location-card"><h4>${escapeHtml(event.location?.name || 'Location TBA')}</h4><p class="addr">${escapeHtml(event.location?.address || '')}<br>${escapeHtml(event.location?.city || '')}</p></div>`;
     if (sections[4]) sections[4].innerHTML = `<h2>Frequently asked</h2>${(event.faq || []).map(item => `<details class="faq-item"><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join('')}`;
 
     const card = document.querySelector('.checkout-card');
+    const grid = document.querySelector('.event-grid');
+    const mobileLayout = window.matchMedia('(max-width: 1024px)');
+    const placeCheckout = media => {
+      if (media.matches && sections[0]) {
+        sections[0].insertAdjacentElement('afterend', card);
+      } else if (grid) {
+        grid.append(card);
+      }
+    };
+    placeCheckout(mobileLayout);
+    mobileLayout.addEventListener('change', placeCheckout);
     const tiers = event.priceTiers || [];
     let selectedTier = tiers.find(t => !t.soldOut) || null;
     let embeddedInstance = null;

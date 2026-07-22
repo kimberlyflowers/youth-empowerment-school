@@ -89,7 +89,7 @@
   }
   .event-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: minmax(0, 1fr) minmax(430px, 470px);
     gap: var(--space-7);
     align-items: start;
   }
@@ -225,26 +225,15 @@
     overflow: visible;
   }
   .checkout-card.checkout-active {
-    position: relative;
-    top: auto;
-    grid-column: 1 / -1;
-    width: 100%;
-    padding: clamp(20px, 4vw, 42px);
+    grid-column: auto;
   }
   .checkout-card.checkout-active .embedded-checkout {
     width: 100%;
-    max-width: 780px;
+    max-width: none;
+    min-width: 0;
     min-height: 760px;
-    margin: 20px auto 0;
+    margin: 20px 0 0;
     overflow: visible;
-  }
-  .checkout-card.checkout-active .checkout-meta,
-  .checkout-card.checkout-active .ticket-label,
-  .checkout-card.checkout-active .ticket,
-  .checkout-card.checkout-active .checkout-foot {
-    max-width: 780px;
-    margin-left: auto;
-    margin-right: auto;
   }
   .register-btn[hidden] { display: none !important; }
   .checkout-meta { padding-bottom: 18px; border-bottom: 1px solid var(--yes-stone); margin-bottom: 18px; }
@@ -311,7 +300,7 @@
 
   @media (max-width: 1024px) {
     .event-grid { grid-template-columns: 1fr; }
-    .checkout-card { position: static; }
+    .checkout-card { position: static; margin-bottom: var(--space-7); }
     .speakers { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
@@ -376,7 +365,7 @@
 <section class="event-body">
   <div class="container">
     <div class="event-grid">
-      <div>
+      <div class="event-content">
 
         <div class="event-section">
           <h2>About this event</h2>

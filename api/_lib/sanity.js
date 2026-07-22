@@ -35,6 +35,13 @@ const eventProjection = `{
   location,
   about,
   agenda[] { time, title, detail },
+  speakers[]->{
+    _id,
+    name,
+    role,
+    bio,
+    "headshotUrl": headshot.asset->url
+  },
   priceTiers[] { label, priceCents, description, soldOut },
   faq[] { q, a }
 }`;
