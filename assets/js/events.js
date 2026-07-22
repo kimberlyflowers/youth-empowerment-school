@@ -46,7 +46,7 @@
 
     const featured = document.querySelector('.feature-event');
     if (featured) {
-      const event = events[0];
+      const event = events.find(item => item.featured) || events[0];
       const d = dateParts(event.startDate);
       const imageUrl = event.experienceImageUrl || event.heroImageUrl;
       featured.innerHTML = `<div style="position:relative;z-index:2">

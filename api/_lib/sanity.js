@@ -27,6 +27,7 @@ const eventProjection = `{
   "slug": slug.current,
   kind,
   tagline,
+  featured,
   "heroImageUrl": heroImage.asset->url,
   "heroImageAlt": coalesce(heroImage.alt, title),
   "experienceImageUrl": experienceImage.asset->url,
@@ -52,7 +53,7 @@ const eventProjection = `{
 
 async function listYesEvents() {
   return sanityQuery(
-    `*[_type == "event" && site == "yes"] | order(startDate asc) ${eventProjection}`
+    `*[_type == "event" && site == "yes"] | order(coalesce(featured, false) desc, startDate asc) ${eventProjection}`
   );
 }
 
