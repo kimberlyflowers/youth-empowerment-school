@@ -32,8 +32,9 @@
       const tiers = event.priceTiers || [];
       const lowest = tiers.filter(t => !t.soldOut).sort((a, b) => a.priceCents - b.priceCents)[0];
       const ticketText = lowest ? (lowest.priceCents ? `From ${money(lowest.priceCents)}` : 'Free · RSVP') : 'Details online';
+      const imageUrl = event.experienceImageUrl || event.heroImageUrl;
       return `<article class="event">
-        <div class="event-date"><span>${d.weekday}</span><strong>${d.day}</strong><span>${d.month}</span><span class="yr">${d.year}</span></div>
+        <a class="event-media" href="event.html?slug=${encodeURIComponent(event.slug)}">${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(event.experienceImageAlt || event.heroImageAlt || event.title)}">` : ''}<span class="event-date-badge">${d.month} ${d.day} · ${d.year}</span></a>
         <div>
           <h3><a href="event.html?slug=${encodeURIComponent(event.slug)}" style="color:inherit;text-decoration:none">${escapeHtml(event.title)}</a></h3>
           <p>${escapeHtml(event.tagline || (event.about || [])[0] || '')}</p>
@@ -47,12 +48,13 @@
     if (featured) {
       const event = events[0];
       const d = dateParts(event.startDate);
+      const imageUrl = event.experienceImageUrl || event.heroImageUrl;
       featured.innerHTML = `<div style="position:relative;z-index:2">
         <span class="eyebrow on-dark" style="color:var(--yes-gold-bright)">Featured event</span>
         <h2>${escapeHtml(event.title)}</h2>
         <p>${escapeHtml(event.tagline || (event.about || [])[0] || '')}</p>
         <a href="event.html?slug=${encodeURIComponent(event.slug)}" class="btn btn-gold btn-lg">View event details →</a>
-      </div><div class="ev-card"><div class="day">${d.weekday}</div><div class="num">${d.day}</div><div class="month">${d.month}</div><hr><div class="when">${d.time}<br>${escapeHtml(event.location?.name || 'Location TBA')}</div></div>`;
+      </div><a href="event.html?slug=${encodeURIComponent(event.slug)}" class="ev-card event-photo">${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(event.experienceImageAlt || event.heroImageAlt || event.title)}">` : ''}<span>${d.weekday}, ${d.month} ${d.day} · ${d.time}</span></a>`;
     }
   }
 

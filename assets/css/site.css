@@ -969,7 +969,7 @@ body[data-accent="crimson"] .btn-outline {
 .event-list { display: grid; gap: var(--space-5); }
 .event {
   display: grid;
-  grid-template-columns: 140px 1fr auto;
+  grid-template-columns: minmax(210px, 280px) 1fr auto;
   gap: var(--space-6);
   background: var(--yes-white);
   border: 1px solid var(--yes-stone);
@@ -979,6 +979,30 @@ body[data-accent="crimson"] .btn-outline {
   transition: transform var(--dur-base) var(--ease-out-expo), border-color var(--dur-base);
 }
 .event:hover { transform: translateY(-2px); border-color: var(--yes-crimson); }
+.event-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--yes-navy-deep);
+}
+.event-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 300ms var(--ease-out-expo); }
+.event:hover .event-media img { transform: scale(1.025); }
+.event-date-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(8, 26, 51, 0.92);
+  color: var(--yes-white);
+  font-family: var(--font-athletic);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 .event-date {
   text-align: center;
   background: var(--yes-navy-deep);
@@ -1078,6 +1102,29 @@ body[data-accent="crimson"] .btn-outline {
   padding: var(--space-6);
   text-align: center;
   box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+}
+.feature-event .ev-card.event-photo {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  width: min(100%, 520px);
+  text-decoration: none;
+}
+.feature-event .ev-card.event-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.feature-event .ev-card.event-photo span {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(8, 26, 51, 0.92);
+  color: var(--yes-white);
+  font-family: var(--font-athletic);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .feature-event .ev-card .day {
   font-family: var(--font-athletic);
@@ -1295,7 +1342,7 @@ body[data-accent="crimson"] .btn-outline {
 @media (max-width: 640px) {
   .pillars, .programs, .impact-grid, .team-grid, .amounts, .footer-grid { grid-template-columns: 1fr; }
   .event { grid-template-columns: 1fr; text-align: left; }
-  .event-date { max-width: 140px; }
+  .event-media { width: 100%; }
   .container, .container-wide { padding: 0 var(--space-5); }
   .topbar-inner { display: none; }
   .apply-card .row { grid-template-columns: 1fr; }
