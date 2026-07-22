@@ -71,6 +71,10 @@
     document.querySelector('.event-tag').textContent = event.kind || 'YES Event';
     document.querySelector('.event-hero h1').textContent = event.title;
     document.querySelector('.event-tagline').textContent = event.tagline || '';
+    const hero = document.querySelector('.event-hero-bg');
+    if (hero && event.heroImageUrl) {
+      hero.innerHTML = `<img src="${escapeHtml(event.heroImageUrl)}" alt="${escapeHtml(event.heroImageAlt || event.title)}">`;
+    }
     document.querySelector('.event-meta-row').innerHTML = `<div class="item"><div><strong>${start.full}</strong><span>${start.time}${end ? ` – ${end.time}` : ''} ${escapeHtml(event.timezone || '')}</span></div></div><div class="item"><div><strong>${escapeHtml(event.location?.name || 'Location TBA')}</strong><span>${escapeHtml(event.location?.city || '')}</span></div></div>`;
 
     const sections = document.querySelectorAll('.event-section');
@@ -82,6 +86,7 @@
     const card = document.querySelector('.checkout-card');
     const tiers = event.priceTiers || [];
     let selectedTier = tiers.find(t => !t.soldOut) || null;
+    let embeddedInstance = null;
     card.querySelector('.checkout-meta').innerHTML = `<div class="row"><div><strong>${start.full}</strong><span>${start.time}${end ? ` – ${end.time}` : ''}</span></div></div><div class="row"><div><strong>${escapeHtml(event.location?.name || 'Location TBA')}</strong><span>${escapeHtml(event.location?.city || '')}</span></div></div>`;
     card.querySelectorAll('.ticket').forEach(ticket => ticket.remove());
     const label = card.querySelector('.ticket-label');
@@ -95,6 +100,7 @@
         card.querySelectorAll('.ticket').forEach(item => item.classList.remove('active'));
         ticket.classList.add('active');
         selectedTier = tier;
+        if (tier.priceCents > 0) startCheckout();
       });
       label.insertAdjacentElement('afterend', ticket);
     });
@@ -102,16 +108,17 @@
     const register = document.getElementById('event-register');
     const mount = document.getElementById('event-embedded-checkout');
     const errorEl = document.getElementById('event-payment-error');
-    register.textContent = selectedTier && selectedTier.priceCents > 0 ? 'Enter secure payment details' : 'Reserve my spot';
-    register.addEventListener('click', async eventClick => {
-      eventClick.preventDefault();
-      if (!selectedTier || selectedTier.priceCents === 0) {
-        location.href = 'events.html#rsvp';
-        return;
-      }
+    let checkoutLoading = false;
+    const startCheckout = async () => {
+      if (!selectedTier || selectedTier.priceCents === 0 || checkoutLoading) return;
+      checkoutLoading = true;
       errorEl.textContent = '';
-      register.setAttribute('aria-disabled', 'true');
+      errorEl.textContent = 'Loading secure payment options…';
       try {
+        if (embeddedInstance) {
+          embeddedInstance.destroy();
+          embeddedInstance = null;
+        }
         const checkoutResponse = await fetch('/api/create-event-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -120,16 +127,28 @@
         const checkout = await checkoutResponse.json();
         if (!checkoutResponse.ok) throw new Error(checkout.error || 'Checkout could not be started');
         const stripe = Stripe(checkout.publishableKey);
-        const embedded = await stripe.initEmbeddedCheckout({ clientSecret: checkout.clientSecret });
+        embeddedInstance = await stripe.initEmbeddedCheckout({ clientSecret: checkout.clientSecret });
+        card.classList.add('checkout-active');
         mount.hidden = false;
-        embedded.mount('#event-embedded-checkout');
-        mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        embeddedInstance.mount('#event-embedded-checkout');
+        errorEl.textContent = '';
       } catch (error) {
         errorEl.textContent = error.message || 'Secure payment could not be loaded.';
       } finally {
-        register.removeAttribute('aria-disabled');
+        checkoutLoading = false;
       }
-    });
+    };
+
+    if (selectedTier && selectedTier.priceCents > 0) {
+      register.hidden = true;
+      startCheckout();
+    } else {
+      register.textContent = 'Reserve my spot';
+      register.addEventListener('click', eventClick => {
+        eventClick.preventDefault();
+        location.href = 'events.html#rsvp';
+      });
+    }
 
     const sessionId = new URLSearchParams(location.search).get('session_id');
     if (sessionId) {

@@ -27,6 +27,8 @@ const eventProjection = `{
   "slug": slug.current,
   kind,
   tagline,
+  "heroImageUrl": heroImage.asset->url,
+  "heroImageAlt": coalesce(heroImage.alt, title),
   startDate,
   endDate,
   timezone,
