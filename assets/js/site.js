@@ -13,41 +13,93 @@
     if (a.getAttribute('href') === path) a.classList.add('active');
   });
 
-  // Donate amount toggle + Stripe link builder
+  // Donate amount toggle + embedded Stripe Checkout
   const amounts = document.querySelectorAll('.amount');
   const stripeBtn = document.getElementById('stripe-checkout');
-  const STRIPE_BASE = 'https://buy.stripe.com/test_yes_donation';
-  function syncStripe() {
-    if (!stripeBtn) return;
+  let embeddedCheckout = null;
+
+  function donationSelection() {
     const active = document.querySelector('.amount.active');
     const freq = document.querySelector('.frequency button.active');
     const custom = document.getElementById('custom-amount');
-    const amt = (custom && custom.value) || (active && active.dataset.amount) || '';
-    const f = freq ? freq.textContent.trim().toLowerCase() : 'one-time';
-    const params = new URLSearchParams();
-    if (amt) params.set('amount', amt);
-    params.set('frequency', f);
-    stripeBtn.href = STRIPE_BASE + '?' + params.toString();
+    return {
+      amount: Number((custom && custom.value) || (active && active.dataset.amount) || 0),
+      frequency: freq ? freq.textContent.trim().toLowerCase() : 'one-time',
+      name: (document.getElementById('donor-name') || {}).value || '',
+      email: (document.getElementById('donor-email') || {}).value || ''
+    };
   }
+
   amounts.forEach(a => a.addEventListener('click', () => {
     amounts.forEach(b => b.classList.remove('active'));
     a.classList.add('active');
     const custom = document.getElementById('custom-amount');
     if (custom) custom.value = a.dataset.amount || '';
-    syncStripe();
   }));
-  const customAmt = document.getElementById('custom-amount');
-  if (customAmt) customAmt.addEventListener('input', syncStripe);
-  syncStripe();
 
   // Frequency toggle
   document.querySelectorAll('.frequency button').forEach(b => {
     b.addEventListener('click', () => {
       b.parentElement.querySelectorAll('button').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      if (typeof syncStripe === 'function') syncStripe();
     });
   });
+
+  if (stripeBtn) {
+    stripeBtn.addEventListener('click', async () => {
+      const errorEl = document.getElementById('donation-error');
+      const mount = document.getElementById('embedded-checkout');
+      const selection = donationSelection();
+      errorEl.textContent = '';
+
+      if (!selection.amount || selection.amount < 1) {
+        errorEl.textContent = 'Choose or enter a donation amount of at least $1.';
+        return;
+      }
+      if (!selection.email || !selection.email.includes('@')) {
+        errorEl.textContent = 'Enter a valid email address for your receipt.';
+        return;
+      }
+
+      stripeBtn.disabled = true;
+      stripeBtn.textContent = 'Loading secure payment…';
+      try {
+        if (embeddedCheckout) embeddedCheckout.destroy();
+        const response = await fetch('/api/create-donation-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(selection)
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || 'Checkout could not be started');
+
+        const stripe = Stripe(payload.publishableKey);
+        embeddedCheckout = await stripe.initEmbeddedCheckout({
+          clientSecret: payload.clientSecret
+        });
+        mount.hidden = false;
+        embeddedCheckout.mount('#embedded-checkout');
+        mount.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (error) {
+        errorEl.textContent = error.message || 'Secure payment could not be loaded.';
+      } finally {
+        stripeBtn.disabled = false;
+        stripeBtn.textContent = 'Enter secure payment details';
+      }
+    });
+
+    const sessionId = new URLSearchParams(location.search).get('session_id');
+    if (sessionId) {
+      fetch('/api/session-status?session_id=' + encodeURIComponent(sessionId))
+        .then(r => r.json())
+        .then(data => {
+          if (data.confirmed && data.metadata && data.metadata.purpose === 'scholarship-donation') {
+            document.getElementById('donation-confirmation').hidden = false;
+          }
+        })
+        .catch(() => {});
+    }
+  }
 
   // Apply form (demo)
   document.querySelectorAll('form[data-demo]').forEach(form => {

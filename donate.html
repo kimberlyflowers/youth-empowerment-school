@@ -105,13 +105,19 @@
         <input type="number" id="custom-amount" placeholder="$ Other amount" min="1">
 
         <label style="font-family: var(--font-athletic); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; font-weight: 600; color: var(--yes-navy-deep); display: block; margin-bottom: 8px; margin-top: 8px;">Your details</label>
-        <input type="text" placeholder="Full name" required>
-        <input type="email" placeholder="Email" required>
+        <input type="text" id="donor-name" placeholder="Full name" required>
+        <input type="email" id="donor-email" placeholder="Email" required>
 
-        <a href="https://buy.stripe.com/test_yes_donation" id="stripe-checkout" class="submit-btn" style="width: 100%; margin-top: 12px; background: var(--yes-crimson); color: var(--yes-white); border: 0; padding: 18px; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: var(--radius-md); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+        <button type="button" id="stripe-checkout" class="submit-btn" style="width: 100%; margin-top: 12px; background: var(--yes-crimson); color: var(--yes-white); border: 0; padding: 18px; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; border-radius: var(--radius-md); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
-          Continue to Stripe checkout →
-        </a>
+          Enter secure payment details
+        </button>
+        <p id="donation-error" class="payment-message" role="alert"></p>
+        <div id="donation-confirmation" class="payment-confirmation" hidden>
+          <strong>Thank you—your donation is confirmed.</strong>
+          <span>A Stripe receipt has been sent to your email.</span>
+        </div>
+        <div id="embedded-checkout" class="embedded-checkout" hidden></div>
 
         <p style="font-size: 0.78rem; color: var(--yes-graphite); text-align: center; margin: 12px 0 0;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: -2px; color: var(--yes-sage);"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none"/></svg>
@@ -206,6 +212,7 @@
   </div>
 </footer>
 
+<script src="https://js.stripe.com/v3/"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

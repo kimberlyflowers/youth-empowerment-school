@@ -1200,6 +1200,32 @@ body[data-accent="crimson"] .btn-outline {
 }
 .give-card input:focus { outline: none; border-color: var(--yes-crimson); }
 
+.embedded-checkout {
+  margin-top: 20px;
+  min-height: 520px;
+  border-top: 1px solid var(--yes-stone);
+  padding-top: 16px;
+}
+.payment-message {
+  color: var(--yes-crimson-deep);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  min-height: 1.4em;
+  margin: 10px 0 0;
+}
+.payment-confirmation {
+  margin-top: 18px;
+  padding: 18px;
+  background: #eaf6ee;
+  border: 1px solid #8fc6a0;
+  border-radius: var(--radius-md);
+  color: #164c2a;
+}
+.payment-confirmation strong,
+.payment-confirmation span { display: block; }
+.payment-confirmation span { margin-top: 4px; font-size: 0.9rem; }
+
 .impact-mini {
   display: grid; gap: 14px;
   margin-top: var(--space-6);

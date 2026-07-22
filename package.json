@@ -1,0 +1,8 @@
+{
+  "name": "youth-empowerment-school",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "stripe": "^22.3.2"
+  }
+}
